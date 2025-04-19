@@ -53,5 +53,3 @@ def file_to_resume(file):
 
     compile_tex_in_place('output.tex')
     print("PDF Generated.")
-
-file_to_resume('sample.pdf')

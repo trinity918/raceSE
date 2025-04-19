@@ -80,9 +80,4 @@ def return_json_data():
     result = chain.invoke({"chunks": retrieved_chunks})
     
     result = literal_eval(result)
-    print(result['skills'])
-    print(result['missing'])
-
-    print(result)
-
-return_json_data()
+    return result['skills'], result['missing']

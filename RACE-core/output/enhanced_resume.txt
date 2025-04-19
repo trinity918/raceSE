@@ -12,51 +12,40 @@
             "dates": "Graduating in May 2027"
         }
     ],
-    "experience": [
-        {
-            "title": "Former sub-committee member",
-            "company": "Rotaract Club of SPIT",
-            "location": "Sardar Patel Institute of Technology",
-            "dates": "September, 2023 - August, 2024",
-            "details": [
-                "Mentored school children at Abhyudaya SPJIMR, fostering personal growth and academic development"
-            ]
-        }
-    ],
+    "experience": [],
     "projects": [
         {
             "name": "Flood Risk Prediction Model (Machine Learning Mini-Project)",
             "stack": "Python, Machine Learning",
             "dates": "November, 2024",
             "details": [
-                "Led the design of an ML model leveraging machine learning and real-time weather data to predict flood risks with 95% accuracy",
-                "Performed cleaning and processing of historical flood data, meteorological data, and elevation data to enhance model accuracy",
-                "Implemented various ML models like random forest, regression, neural networks, achieving up to 95% accuracy",
-                "Deployed the model on Google Colab for testing and analysis, ensuring accessibility and ease of use"
+                "Designed and implemented an ML model leveraging machine learning and real-time weather data to predict flood risks with precision.",
+                "Orchestrated the cleaning and processing of historical flood data, meteorological data, and elevation data to enhance model accuracy.",
+                "Utilized various ML models like random forest, regression, neural networks, achieving an outstanding accuracy of up to 95 percent.",
+                "Deployed the model using Google Colab for testing and analysis, ensuring accessibility and ease of use for stakeholders."
             ]
         },
         {
-            "name": "Napflix - A Streaming Platform (DBMS Mini-Project)",
+            "name": "Napflix -  A Streaming Platform (DBMS Mini-Project)",
             "stack": "Python, SQL, Javascript",
             "dates": "December, 2024",
             "details": [
-                "Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history",
-                "Implemented a secure login system with hashed passwords to mitigate security threats like SQL injection",
-                "Optimized database queries and server responses for seamless streaming experience",
-                "Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL"
+                "Conceptualized and optimized a SQL database structure for efficient content storage, user authentication, and streaming history management.",
+                "Engineered a secure login system integrating hashed password storage to fortify user credentials against security vulnerabilities like SQL injection.",
+                "Enhanced database query performance and server response times for streamlined data retrieval and uninterrupted streaming experience.",
+                "Crafted an interactive front-end using JavaScript and a secure back-end architecture with Python and SQL."
             ]
         },
         {
-            "name": "SheFunds - A Financial Literacy Platform for Women (Front-end Project)",
+            "name": "SheFunds -  A Financial Literacy Platform for Women (Front-end Project)",
             "stack": "Javascript",
             "dates": "March, 2025",
             "details": [
-                "Awarded best solution in BBB-Frontend Hackathon at SPIT",
-                "Created a responsive front-end with React.js and Tailwind CSS for financial empowerment",
-                "Designed interactive UI components for financial learning modules, calculators, and community posts",
-                "Focused on user-centric design to empower women with financial resources and mentorship programs",
-                "Optimized for accessibility and performance to ensure quick loading and usability for all users",
-                "Managed social media, marketing deals, and volunteered for social work"
+                "Awarded best solution for the problem statement at BBB-Frontend Hackathon at SPIT, showcasing innovative thinking and technical prowess.",
+                "Engineered a responsive front-end interface with React.js and Tailwind CSS, ensuring seamless user experience on diverse devices.",
+                "Designed interactive UI components to showcase key features such as financial learning modules, calculators, community posts, and literacy courses.",
+                "Prioritized user-centric design to empower women with seamless access to financial resources, tools, and mentorship programs.",
+                "Optimized website for accessibility and performance, resulting in swift loading times and enhanced usability. Managed social media presence, negotiated marketing deals, and volunteered for social initiatives."
             ]
         }
     ],
