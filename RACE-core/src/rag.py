@@ -7,6 +7,8 @@ from langchain_core.documents import Document
 import os
 import shutil
 
+import json
+
 from ast import literal_eval
 
 output_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
@@ -54,7 +56,7 @@ Find:
 2. Skills missing in the resume but mentioned in JD
 
 Return them in a json format only. No extra text.
-Also generate 2-3 cover letters to the company based on the skills, and also return them in the json format.
+Also generate 2 cover letters to the company based on the skills, and also return them in the json format.
 
 Here are some resume chunks:
 {chunks}
@@ -68,6 +70,7 @@ here is the expected json format:
 }}
 
 DO NOT ADD ANY ```json and ``` in the output.
+For cover_letters, only provide complete cv strings, make each one to be atleadt 300 words.
 """
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
@@ -78,6 +81,7 @@ retrieved_chunks = "\n\n".join([doc.page_content for doc in docs])
 def return_json_data():
 
     result = chain.invoke({"chunks": retrieved_chunks})
-    
-    result = literal_eval(result)
-    return result['skills'], result['missing']
+
+    result = json.loads(result)
+    print(result)
+    return result['skills'], result['missing'], result['cover_letters']
