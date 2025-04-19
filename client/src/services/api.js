@@ -1,37 +1,57 @@
+// frontend/src/utils/api.js
+
 import axios from 'axios';
 
+// This could be loaded from your environment variables or backend
+const NGROK_URL = 'https://4aba-103-104-226-58.ngrok-free.app';
+
+// Create an axios instance with the ngrok URL as the base URL
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: NGROK_URL,
+  timeout: 30000, // 30 seconds
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add JWT token to requests
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+// File upload instance with different headers
+const fileApi = axios.create({
+  baseURL: NGROK_URL,
+  timeout: 60000, // 60 seconds for file uploads
+  headers: {
+    'Content-Type': 'multipart/form-data',
   },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+});
 
-// Handle token expiration
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/';
-    }
-    return Promise.reject(error);
-  }
-);
+export const uploadResumeFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  const response = await fileApi.post('/upload', formData, {
+    responseType: 'blob',
+  });
+  
+  return response.data;
+};
 
-export default api;
+export const getSkillsData = async () => {
+  const response = await api.get('/get_skills_data');
+  return response.data;
+};
+
+export const getResumeData = async () => {
+  const response = await api.get('/get_resume_data');
+  return response.data;
+};
+
+export const sendResumeData = async (resumeData) => {
+  const response = await api.post('/generate-resume', resumeData);
+  return response.data;
+};
+
+export default {
+  uploadResumeFile,
+  getSkillsData,
+  getResumeData,
+  sendResumeData,
+};
