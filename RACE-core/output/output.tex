@@ -1,168 +1,70 @@
-```latex
-\documentclass[letterpaper,11pt]{article}
-
-% Packages
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
+\documentclass{article}
+\usepackage{geometry}
 \usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[english]{babel}
-\usepackage{tabularx}
-\input{glyphtounicode}
+\usepackage{xcolor}
+\usepackage{hyperref}
 
-% Page style
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.4}
 
-% Page margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
-
-% Link style
-\urlstyle{same}
-
-% Layout
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
-
-% Section formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
-
-% PDF Unicode
-\pdfgentounicode=1
-
-% Custom commands
-\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-2pt}}}
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small#4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeProjectHeading}[2]{
-  \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\geometry{a4paper, left=1in, right=1in, top=1in, bottom=1in}
 
 \begin{document}
 
-%----------Heading----------
 \begin{center}
-  \textbf{\Huge\scshape AISHANI SINGH} \\ \vspace{1pt}
-  \small +91 9321677477 $|$ \href{mailto:aishanis1234@gmail.com}{aishanis1234@gmail.com} $|$
-  \href{https://linkedin.com/in/}{} $|$
-  \href{https://github.com/aishan1singh}{github.com/aishan1singh}
+    {\LARGE\textbf{AISHANI SINGH}} \\
+    \vspace{5pt}
+    +91 9321677477 $\vert$ aishanis1234@gmail.com $\vert$ github.com/aishan1singh
 \end{center}
 
-%----------Education----------
-\section{Education}
-\resumeSubHeadingListStart
+\section*{Education}
+\textbf{Sardar Patel Institute of Technology}, Mumbai, IN \\
+B.Tech, Computer Engineering \\
+Graduating in May 2027
 
-  \resumeSubheading
-    {Sardar Patel Institute of Technology}{Mumbai, IN}
-    {B.Tech, Computer Engineering}{Graduating in May 2027}
-
-\resumeSubHeadingListEnd
-
-%----------Experience----------
-\section{Experience}
-\resumeSubHeadingListStart
-
-  \resumeSubheading
-    {Former sub-committee member}{September, 2023 - August, 2024}
-    {Rotaract Club of SPIT}{}
-  \resumeItemListStart
-  
-    \resumeItem{Mentored school children at Abhyudaya SPJIMR, providing guidance and support to enhance their educational journey and personal development.}
-  
-  \resumeItemListEnd
-
-\resumeSubHeadingListEnd
-
-%----------Projects----------
-\section{Projects}
-\resumeSubHeadingListStart
-
-  \resumeProjectHeading
-    {\textbf{Flood Risk Prediction Model (Machine Learning Mini-Project)} $|$ \emph{Python, Machine Learning}}{November, 2024}
-  \resumeItemListStart
-  
-    \resumeItem{Developed an ML model utilizing historical flood, meteorological, and elevation data to predict flood risks with up to 95\% accuracy.}
-  
-    \resumeItem{Applied various ML models like random forest, regression, and neural networks to optimize predictions.}
-  
-    \resumeItem{Enhanced model accuracy by processing real-time weather data and deploying the model using Google Colab for accessibility and analysis.}
-  
-  \resumeItemListEnd
-
-  \resumeProjectHeading
-    {\textbf{Napflix - A Streaming Platform (DBMS Mini-Project)} $|$ \emph{Python, SQL, JavaScript}}{December, 2024}
-  \resumeItemListStart
-  
-    \resumeItem{Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history.}
-  
-    \resumeItem{Implemented secure login system with hashed password storage to mitigate security risks like SQL injection.}
-  
-    \resumeItem{Optimized database queries and server responses for seamless data retrieval and streaming efficiency.}
-  
-    \resumeItem{Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL.}
-  
-  \resumeItemListEnd
-
-  \resumeProjectHeading
-    {\textbf{SheFunds - A Financial Literacy Platform for Women (Front-end Project)} $|$ \emph{JavaScript}}{March, 2025}
-  \resumeItemListStart
-  
-    \resumeItem{Recognized for the best solution at BBB-Frontend Hackathon for innovative problem-solving.}
-  
-    \resumeItem{Built a responsive front-end with React.js and Tailwind CSS to provide financial resources and mentorship programs for women.}
-  
-    \resumeItem{Designed interactive UI components for financial learning modules, calculators, community posts, and literacy courses.}
-  
-    \resumeItem{Focused on empowering women with easy access to financial tools, resources, and mentorship programs.}
-  
-    \resumeItem{Optimized website for quick loading and usability across diverse audiences, ensuring accessibility and performance.}
-  
-    \resumeItem{Managed social media pages, negotiated marketing deals, and volunteered for social work initiatives.}
-  
-  \resumeItemListEnd
-
-\resumeSubHeadingListEnd
-
-%----------Technical Skills----------
-\section{Technical Skills}
-\begin{itemize}[leftmargin=0.15in, label={}]
-  \small{\item{
-    \textbf{Languages}{: C, C++, Java, Python, SQL, HTML, CSS, JavaScript} \\
-    \textbf{Frameworks}{: } \\
-    \textbf{Developer Tools}{: Bootstrap, Figma, Canva, Blender, Sculptris} \\
-    \textbf{Libraries}{: }
-  }}
+\section*{Experience}
+\textbf{Former sub-committee member} \\
+\textit{Rotaract Club of SPIT} \\
+Sardar Patel Institute of Technology \\
+September 2023 - August 2024
+\begin{itemize}
+    \item Mentored school children at Abhyudaya SPJIMR, fostering personal growth and academic development
 \end{itemize}
 
+\section*{Projects}
+\textbf{Flood Risk Prediction Model (Machine Learning Mini-Project)} \\
+\textit{Python, Machine Learning} \\
+November 2024
+\begin{itemize}
+    \item Led the design of an ML model leveraging machine learning and real-time weather data to predict flood risks with 95\% accuracy
+    \item Performed cleaning and processing of historical flood data, meteorological data, and elevation data to enhance model accuracy
+    \item Implemented various ML models like random forest, regression, neural networks, achieving up to 95\% accuracy
+    \item Deployed the model on Google Colab for testing and analysis, ensuring accessibility and ease of use
+\end{itemize}
+
+\textbf{Napflix - A Streaming Platform (DBMS Mini-Project)} \\
+\textit{Python, SQL, Javascript} \\
+December 2024
+\begin{itemize}
+    \item Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history
+    \item Implemented a secure login system with hashed passwords to mitigate security threats like SQL injection
+    \item Optimized database queries and server responses for seamless streaming experience
+    \item Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL
+\end{itemize}
+
+\textbf{SheFunds - A Financial Literacy Platform for Women (Front-end Project)} \\
+\textit{Javascript} \\
+March 2025
+\begin{itemize}
+    \item Awarded best solution in BBB-Frontend Hackathon at SPIT
+    \item Created a responsive front-end with React.js and Tailwind CSS for financial empowerment
+    \item Designed interactive UI components for financial learning modules, calculators, and community posts
+    \item Focused on user-centric design to empower women with financial resources and mentorship programs
+    \item Optimized for accessibility and performance to ensure quick loading and usability for all users
+    \item Managed social media, marketing deals, and volunteered for social work
+\end{itemize}
+
+\section*{Skills}
+\textbf{Languages:} C, C++, Java, Python, SQL, HTML, CSS, Javascript \\
+\textbf{Tools:} Bootstrap, Figma, Canva, Blender, Sculptris
+
 \end{document}
-```

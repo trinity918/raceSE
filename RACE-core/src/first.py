@@ -77,6 +77,7 @@ resume_data = {
 from jinja2 import Environment, FileSystemLoader
 import os
 import json
+from ast import literal_eval
 
 template_dir = os.path.join(os.path.dirname(__file__), "..", 'latex')
 env = Environment(loader=FileSystemLoader(template_dir))
@@ -89,11 +90,14 @@ def generate_latex(data):
 
     print(type(data))
 
-    data= json.loads(data)
+    # data = json.loads(data)
+    data = literal_eval(data)
+    print(type(data))
 
     code = template.render(data)
 
     improved = improve_latex(code)
+    final = improve_latex(improved)
 
     with open("output/output.tex", "w") as file:
-        file.write(improved)
+        file.write(final)
