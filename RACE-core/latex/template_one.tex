@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\titleformat{\section}{\Large\bfseries}{}{0em}{}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE {{ name }}} \\
+    {{ email }} \quad | \quad {{ phone }}
+\end{center}
+
+\section*{Education}
+{% for edu in education %}
+\textbf{ {{ edu.degree }} } \\
+{{ edu.institute }} \hfill {{ edu.year }} \\
+{% endfor %}
+
+\section*{Experience}
+{% for exp in experience %}
+\textbf{ {{ exp.role }} } \\
+{{ exp.company }} \hfill {{ exp.duration }} \\
+\begin{itemize}[leftmargin=*]
+    \item {{ exp.description }}
+\end{itemize}
+{% endfor %}
+
+\section*{Skills}
+{{ skills | join(', ') }}
+
+\end{document}

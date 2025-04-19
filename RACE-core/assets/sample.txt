@@ -1,0 +1,66 @@
+EDUCATION
+Sardar Patel Institute of Technology
+Graduating in May 2027
+B.Tech, Computer Engineering
+PROJECTS
++91 9321677477       |  
+aishanis1234@gmail.com     |
+github.com/aishan1singh
+AISHANI SINGH
+Minor in UI/UX Design Programme by Pearl Academy
+GPA : 8.3 (till 3rd Semester)
+Mumbai, IN
+Flood Risk Prediction Model (Machine Learning Mini-Project)
+November, 2024
+Designed an ML model leveraging machine learning and real-time weather data to predict flood
+risks.
+Dealt with cleaning and processing of historical flood data, meteorological data, and elevation data
+to enhance model accuracy
+Implemented various ML models like random forest, regression, neural networks, etc. to get an
+accuracy of up to 95%.
+Deployed the model using Google Colab for testing and analysis, ensuring accessibility and ease of
+use
+Python, Machine Learning
+Napflix -  A Streaming Platform (DBMS Mini-Project)
+Python, SQL, Javascript
+December, 2024
+Designed and optimized a SQL database for efficient content storage, user authentication, and
+streaming history.
+Implemented a login system incorporating hashed password storage to protect user credentials
+from security threats like SQL injection 
+Optimized database queries and server responses for efficient data retrieval and seamless
+streaming.
+Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL.
+SheFunds -  A Financial Literacy Platform for Women (Front-end Project)
+March, 2025
+Javascript
+Won best solution for problem statement in BBB-Frontend Hackathon at SPIT
+Developed a responsive front-end using React.js and Tailwind CSS, ensuring a seamless user
+experience across devices.
+Designed interactive UI components to present core features like financial learning modules,
+financial calculators, community posts, literacy courses, etc.
+Focused on user-centric design to empower women with easy access to financial resources, tools,
+and mentorship programs.
+Optimized for accessibility and performance, ensuring the website loads quickly and is usable by all
+audiences.
+
+Handled social media page, marketing deals, volunteering for social work
+Former sub-committee member at Rotaract Club of SPIT
+Mentoring of school children at Abhyudaya SPJIMR
+September, 2023 - August, 2024
+January, 2025 - Present
+VOLUNTEERING WORK
+SKILLS
+Programming Languages
+C, C++, Java, Python, SQL, HTML, CSS, Javascript
+Web Design Tools
+Bootstrap, Figma, Canva, Blender, Sculptris
+Databases
+MySQL, MongoDB
+Developer Tools
+Visual Studio Code, Colab, Git
+ACHIEVEMENTS
+Won best solution for problem statement for the SheFunds project mentioned above
+at the Blossom Bubbles and Bytes Hackathon held at S.P.I.T. College 
+March,2025
+

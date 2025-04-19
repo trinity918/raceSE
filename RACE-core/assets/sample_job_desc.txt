@@ -1,0 +1,28 @@
+Company Name: simPPl
+
+Key Responsibilities
+• Develop conversational tools and chatbots using LLMs and machine learning models.
+• Build data scrapers and scalable AI systems for real-world applications
+• Work with large-scale datasets, perform data preprocessing, feature engineering, and model optimization.
+• Deploy AI/ML models and integrate them into web applications.
+• Fine-tune LLMs and support MLOps for conversational AI.
+• Work closely with designers to develop user-friendly, interactive dashboards.
+• Ensure system reliability, scalability, and security.
+• Analyze large datasets, generate insights using AI/ML models, and leverage generative AI for data-driven decision-making.
+• Testing & Deployment: Conduct thorough quality assurance, testing, and CI/CD pipeline management.
+• Cross-Team Collaboration: Engage with researchers, journalists, and policymakers across India, Bangladesh, and the US to develop impactful AI-driven solutions.
+
+Qualifications
+Required:
+Currently pursuing a degree in Computer Science, Data Science, AI, or a related field.
+Strong experience in machine learning and deep learning, with expertise in TensorFlow, PyTorch, or OpenAI APIs.
+Proficiency in Python (Pandas, NumPy, Scikit-learn) for data analysis and ML pipelines.
+Experience with SQL and working with large datasets.
+Basic frontend development skills using React.js, JavaScript, HTML, CSS.
+Experience in web hosting and deployment (AWS, GCP, or similar).
+Familiarity with Git and version control workflows.
+Experience with data visualization (Matplotlib, Seaborn, D3.js, or similar tools).
+Preferred:
+Experience with MLOps, CI/CD pipelines, Docker, Kubernetes.
+Knowledge of serverless deployment, API development (Flask, FastAPI), or cloud-based ML model hosting.
+Background in misinformation research, NLP, or digital forensics.
