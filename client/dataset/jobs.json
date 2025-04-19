@@ -1,0 +1,396 @@
+[
+    {
+      "jobTitle": "Software Engineer",
+      "company": "Tata Consultancy Services",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Java", "Spring Boot", "Microservices", "SQL"],
+      "salaryRange": "₹6,00,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Data Scientist",
+      "company": "Accenture",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Python", "Machine Learning", "Data Analysis", "SQL"],
+      "salaryRange": "₹8,00,000 - ₹16,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Frontend Developer",
+      "company": "Infosys",
+      "location": "Mumbai, India",
+      "requiredSkills": ["JavaScript", "React", "CSS", "HTML5"],
+      "salaryRange": "₹5,00,000 - ₹10,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Business Analyst",
+      "company": "Cognizant",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Business Analysis", "SQL", "Data Visualization", "Excel"],
+      "salaryRange": "₹7,00,000 - ₹14,00,000",
+      "jobType": "Contract"
+    },
+    {
+      "jobTitle": "Project Manager",
+      "company": "Wipro",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Project Management", "Agile", "JIRA", "Scrum"],
+      "salaryRange": "₹10,00,000 - ₹18,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "HR Manager",
+      "company": "HDFC Bank",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Human Resources", "Recruitment", "Employee Relations", "MS Office"],
+      "salaryRange": "₹6,50,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "DevOps Engineer",
+      "company": "L&T Infotech",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Docker", "Kubernetes", "CI/CD", "AWS"],
+      "salaryRange": "₹8,50,000 - ₹15,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Digital Marketing Manager",
+      "company": "Flipkart",
+      "location": "Mumbai, India",
+      "requiredSkills": ["SEO", "Google Analytics", "Social Media Marketing", "Content Strategy"],
+      "salaryRange": "₹7,00,000 - ₹14,00,000",
+      "jobType": "Contract"
+    },
+    {
+      "jobTitle": "Cloud Engineer",
+      "company": "Amazon Web Services",
+      "location": "Mumbai, India",
+      "requiredSkills": ["AWS", "Cloud Computing", "Terraform", "Docker"],
+      "salaryRange": "₹9,00,000 - ₹18,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Product Manager",
+      "company": "Zomato",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Product Management", "Agile", "Market Research", "Data Analysis"],
+      "salaryRange": "₹12,00,000 - ₹25,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Full Stack Developer",
+      "company": "TCS",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Node.js", "React", "MongoDB", "Express"],
+      "salaryRange": "₹6,00,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "UI/UX Designer",
+      "company": "MakeMyTrip",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Figma", "Sketch", "Adobe XD", "User Research"],
+      "salaryRange": "₹5,00,000 - ₹10,00,000",
+      "jobType": "Contract"
+    },
+    {
+      "jobTitle": "Java Developer",
+      "company": "Cognizant",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Java", "Spring Framework", "SQL", "Hibernate"],
+      "salaryRange": "₹7,00,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Mobile App Developer (iOS)",
+      "company": "Ola",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Swift", "Objective-C", "iOS SDK", "Xcode"],
+      "salaryRange": "₹8,00,000 - ₹16,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Mobile App Developer (Android)",
+      "company": "Paytm",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Kotlin", "Android SDK", "Java", "SQLite"],
+      "salaryRange": "₹7,50,000 - ₹14,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Sales Manager",
+      "company": "Coca-Cola",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Sales Strategy", "Client Relationship", "Negotiation", "CRM"],
+      "salaryRange": "₹9,00,000 - ₹18,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Network Engineer",
+      "company": "Reliance Jio",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Networking", "CCNA", "Firewall", "LAN/WAN"],
+      "salaryRange": "₹5,00,000 - ₹10,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Technical Writer",
+      "company": "Samsung",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Technical Writing", "Documentation", "MS Office", "Research"],
+      "salaryRange": "₹6,00,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "SEO Specialist",
+      "company": "Snapdeal",
+      "location": "Mumbai, India",
+      "requiredSkills": ["SEO", "Google Analytics", "Content Marketing", "Keyword Research"],
+      "salaryRange": "₹5,00,000 - ₹9,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Financial Analyst",
+      "company": "Morgan Stanley",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Financial Modelling", "Excel", "Valuation", "Investment Analysis"],
+      "salaryRange": "₹7,50,000 - ₹14,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Backend Developer",
+      "company": "Adobe",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Node.js", "MongoDB", "Java", "API Development"],
+      "salaryRange": "₹7,00,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Game Developer",
+      "company": "Ubisoft",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Unity", "C#", "Game Design", "3D Modeling"],
+      "salaryRange": "₹8,00,000 - ₹16,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Content Writer",
+      "company": "Times Group",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Content Creation", "SEO", "Creative Writing", "MS Office"],
+      "salaryRange": "₹4,00,000 - ₹8,00,000",
+      "jobType": "Contract"
+    },
+    {
+      "jobTitle": "Security Analyst",
+      "company": "Tech Mahindra",
+      "location": "Mumbai, India",
+      "requiredSkills": ["Network Security", "Penetration Testing", "Firewalls", "Threat Detection"],
+      "salaryRange": "₹6,50,000 - ₹12,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "Cloud Solutions Architect",
+      "company": "Microsoft",
+      "location": "Mumbai, India",
+      "requiredSkills": ["AWS", "Azure", "Cloud Architecture", "Terraform"],
+      "salaryRange": "₹15,00,000 - ₹30,00,000",
+      "jobType": "Full-time"
+    },
+    {
+      "jobTitle": "DevSecOps Engineer",
+      "company": "IBM",
+      "location": "Mumbai, India",
+      "requiredSkills": ["DevOps", "Security", "CI/CD", "Terraform"],
+      "salaryRange": "₹10,00,000 - ₹20,00,000",
+      "jobType": "Full-time"
+    },
+    
+        {
+          "jobTitle": "Cybersecurity Analyst",
+          "company": "Wipro",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Cybersecurity", "Network Security", "Firewalls", "Risk Management"],
+          "salaryRange": "₹8,00,000 - ₹15,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Data Engineer",
+          "company": "Amazon",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Python", "Big Data", "ETL", "SQL"],
+          "salaryRange": "₹9,00,000 - ₹18,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Business Development Manager",
+          "company": "Ola",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Sales", "Negotiation", "Client Management", "Market Research"],
+          "salaryRange": "₹8,00,000 - ₹14,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Blockchain Developer",
+          "company": "TCS",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Blockchain", "Ethereum", "Smart Contracts", "Solidity"],
+          "salaryRange": "₹10,00,000 - ₹20,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Product Designer",
+          "company": "Zomato",
+          "location": "Mumbai, India",
+          "requiredSkills": ["UI/UX", "Prototyping", "Figma", "Wireframing"],
+          "salaryRange": "₹7,00,000 - ₹12,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Full Stack Developer",
+          "company": "L&T Infotech",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Node.js", "React", "Express.js", "MongoDB"],
+          "salaryRange": "₹6,00,000 - ₹12,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Technical Support Engineer",
+          "company": "Dell Technologies",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Technical Support", "Networking", "Troubleshooting", "Customer Service"],
+          "salaryRange": "₹4,00,000 - ₹8,00,000",
+          "jobType": "Contract"
+        },
+        {
+          "jobTitle": "QA Engineer",
+          "company": "Tech Mahindra",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Manual Testing", "Automation Testing", "Selenium", "JIRA"],
+          "salaryRange": "₹5,50,000 - ₹11,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Marketing Manager",
+          "company": "HDFC Bank",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Digital Marketing", "SEO", "Google Ads", "Content Strategy"],
+          "salaryRange": "₹7,00,000 - ₹14,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "AI/ML Engineer",
+          "company": "Google",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Machine Learning", "Deep Learning", "Python", "TensorFlow"],
+          "salaryRange": "₹12,00,000 - ₹24,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Salesforce Developer",
+          "company": "Accenture",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Salesforce", "Apex", "Visualforce", "Lightning Components"],
+          "salaryRange": "₹8,00,000 - ₹16,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "UX Researcher",
+          "company": "Capgemini",
+          "location": "Mumbai, India",
+          "requiredSkills": ["User Research", "Usability Testing", "User-Centered Design", "Interviews"],
+          "salaryRange": "₹7,00,000 - ₹13,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "IT Analyst",
+          "company": "IBM",
+          "location": "Mumbai, India",
+          "requiredSkills": ["IT Support", "Network Administration", "Windows", "Linux"],
+          "salaryRange": "₹5,50,000 - ₹10,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Cloud Solutions Architect",
+          "company": "Microsoft",
+          "location": "Mumbai, India",
+          "requiredSkills": ["AWS", "Azure", "Cloud Architecture", "Terraform"],
+          "salaryRange": "₹15,00,000 - ₹25,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Java Developer",
+          "company": "Oracle",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Java", "Spring Framework", "Hibernate", "SQL"],
+          "salaryRange": "₹7,50,000 - ₹15,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Systems Administrator",
+          "company": "Zoho",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Linux", "Windows Server", "Networking", "VMware"],
+          "salaryRange": "₹6,00,000 - ₹12,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Video Editor",
+          "company": "Sony India",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Adobe Premiere", "Final Cut Pro", "Video Editing", "Post-production"],
+          "salaryRange": "₹5,00,000 - ₹10,00,000",
+          "jobType": "Contract"
+        },
+        {
+          "jobTitle": "JavaScript Developer",
+          "company": "Mindtree",
+          "location": "Mumbai, India",
+          "requiredSkills": ["JavaScript", "Node.js", "React", "HTML5"],
+          "salaryRange": "₹6,00,000 - ₹12,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "React Developer",
+          "company": "Syntel",
+          "location": "Mumbai, India",
+          "requiredSkills": ["React", "JavaScript", "HTML5", "CSS3"],
+          "salaryRange": "₹6,50,000 - ₹13,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "SEO Executive",
+          "company": "OYO",
+          "location": "Mumbai, India",
+          "requiredSkills": ["SEO", "Google Analytics", "SEO Tools", "Keyword Research"],
+          "salaryRange": "₹4,50,000 - ₹8,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "DevOps Engineer",
+          "company": "KPMG",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Docker", "Kubernetes", "CI/CD", "AWS"],
+          "salaryRange": "₹8,00,000 - ₹16,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "iOS Developer",
+          "company": "Apple",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Swift", "Objective-C", "iOS SDK", "Xcode"],
+          "salaryRange": "₹9,00,000 - ₹18,00,000",
+          "jobType": "Full-time"
+        },
+        {
+          "jobTitle": "Android Developer",
+          "company": "Samsung",
+          "location": "Mumbai, India",
+          "requiredSkills": ["Android SDK", "Kotlin", "Java", "SQLite"],
+          "salaryRange": "₹7,50,000 - ₹14,00,000",
+    "jobType": "Full-time"
+  }
+  ]
+  
