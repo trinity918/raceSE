@@ -43,10 +43,10 @@ def handle_upload():
 @app.route("/get_skills_data", methods=['GET'])
 def get_data():
 
-    skills, missing = return_json_data()
+    skills, missing, cover_letters = return_json_data()
 
     try:
-        return {'skills': skills, 'missing': missing}, 200
+        return {'skills': skills, 'missing': missing, 'cover_letters': cover_letters}, 200
     
     except:
         return {'error': 'Unexpected error occured'}, 400
