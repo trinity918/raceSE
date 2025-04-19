@@ -3,9 +3,13 @@ from first import generate_latex
 from text_to_json import json_from_text
 from enhancer import enhance_data
 
-import os, json
+from open_latex import generate_tex
+from make_pdf import compile_tex_in_place
 
-def file_to_resume_latex(file):
+import os, json
+from ast import literal_eval
+
+def file_to_resume(file):
 
     '''
     flow :
@@ -31,24 +35,23 @@ def file_to_resume_latex(file):
 
     print("File to text done.")
     print("----------------------------------")
-    print(text)
     print("----------------------------------")
 
     json_resume = json_from_text(text)
     print("Text to JSON done.")
     print("----------------------------------")
-    print(json_resume)
     print("----------------------------------")
-    print(type(json_resume))
 
     enhanced = enhance_data(json_resume)
     print("Resume Enhanced.")
     print("----------------------------------")
-    print(enhanced)
     print("----------------------------------")
-    print(type(enhanced))
 
-    generate_latex(enhanced)
-    print("Latex generated.")
+    enhanced = literal_eval(enhanced)
+    generate_tex(enhanced)
+    print("Tex Generated.")
 
-file_to_resume_latex('sample.pdf')
+    compile_tex_in_place('output.tex')
+    print("PDF Generated.")
+
+file_to_resume('sample.pdf')

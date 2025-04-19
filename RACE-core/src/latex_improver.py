@@ -1,12 +1,13 @@
 from together import Together
 import os
 from dotenv import load_dotenv
+load_dotenv()
 
 client = Together(api_key=os.getenv("TOGETHER_KEY"))
 
 def improve_latex(latex):
 
-    prompt = f"""You are a LaTeX debugger. A user gives you LaTeX code. Your task is to return only the corrected LaTeX code, with no explanation or extra text. Return it as a plain string.
+    prompt = f"""You are a LaTeX debugger. A user gives you LaTeX code. Your task is to return only the corrected LaTeX code, with no explanation or extra text. Return it as a plain string. Stop adding ```latex and ``` above and below the latex string.
 
 Here is the LaTeX code:
 {latex}
