@@ -3,7 +3,7 @@
 
 // Example with fetch API
 async function sendResumeDataWithFetch(resumeData) {
-    const ngrokUrl = 'https://4aba-103-104-226-58.ngrok-free.app';
+    const ngrokUrl = 'https://ebc5-103-104-226-58.ngrok-free.app';
     
     try {
       const response = await fetch(`${ngrokUrl}/generate-resume`, {
