@@ -1,3 +1,4 @@
+// server.js or app.js
 require('dotenv').config();
 require('express-async-errors');
 
@@ -5,6 +6,12 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
+
+// Check for required environment variables
+if (!process.env.JWT_SECRET) {
+  console.error('ERROR: JWT_SECRET is not defined in environment variables');
+  process.exit(1);
+}
 
 // Initialize express app
 const app = express();
@@ -24,8 +31,8 @@ app.get('/', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
+  console.error('Error:', err);
+  res.status(err.statusCode || 500).json({
     error: {
       message: err.message || 'Something went wrong on the server'
     }
