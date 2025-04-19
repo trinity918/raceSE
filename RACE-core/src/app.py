@@ -1,7 +1,9 @@
 from flask import Flask, request, send_file
 import os
 from werkzeug.utils import secure_filename
-from first_integration import file_to_resume_latex
+from first_integration import file_to_resume
+
+from rag import return_json_data
 
 app  = Flask(__name__)
 
@@ -30,13 +32,38 @@ def handle_upload():
         file_path = os.path.join(ASSETS_FOLDER, filename)
         file.save(file_path)
 
-        file_to_resume_latex(filename)
+        file_to_resume(filename)
 
-        tex_path = os.path.join(OUTPUT_FOLDER, 'output.tex')
+        pdf_path = os.path.join(OUTPUT_FOLDER, 'output.pdf')
 
-        return send_file(tex_path, as_attachment=True)
+        return send_file(pdf_path, as_attachment=True)
     
     return {'error': 'Invalid file type. Allowed types are PDF, TXT, DOC, PNG AND JPG.'}, 400
+
+@app.route("/get_skills_data", methods=['GET'])
+def get_data():
+
+    skills, missing = return_json_data()
+
+    try:
+        return {'skills': skills, 'missing': missing}, 200
+    
+    except:
+        return {'error': 'Unexpected error occured'}, 400
+    
+@app.route("/get_resume_data", methods=['GET'])
+def get_data_resume():
+
+    with open(os.path.join(OUTPUT_FOLDER, 'enhanced_resume.txt'), "r") as file:
+        lines = file.readlines()
+
+    text = ('\n').join(lines)
+
+    try:
+        return {'resume': text}, 200
+    
+    except:
+        return {'error': 'Unexpected error occured'}, 400
 
 if __name__ == "__main__":
     app.run(debug=True)

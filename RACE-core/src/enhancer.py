@@ -88,7 +88,7 @@ def enhance_data(data):
     system_prompt = (
         "You are an expert technical resume writer. Given a JSON resume input, "
         "enhance each bullet point to be more impactful by adding quantifiable metrics, "
-        "industry jargon, and clear accomplishments using active verbs, Return the entire structure unchanged except for enhanced content in the `details` fields. Also do no add ```json in the output. and change the sign % to the word percent"
+        "industry jargon, and clear accomplishments using active verbs, Return the entire structure unchanged except for enhanced content in the `details` fields. Also do no add ```json in the output. and change the sign % to the word percent, "
     )
 
     user_prompt = json.dumps(data, indent=2)
