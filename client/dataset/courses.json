@@ -1,0 +1,387 @@
+[
+    {
+      "courseName": "Mastering React.js",
+      "courseTeacher": "John Doe",
+      "courseProvider": "Udemy",
+      "courseRating": 4.8,
+      "courseDuration": "10 hours",
+      "coursePrice": "₹1,999",
+      "courseLink": "https://www.udemy.com/course/mastering-react-js/"
+    },
+    {
+      "courseName": "Deep Learning with Python",
+      "courseTeacher": "Jane Smith",
+      "courseProvider": "Coursera",
+      "courseRating": 4.7,
+      "courseDuration": "15 hours",
+      "coursePrice": "₹3,500",
+      "courseLink": "https://www.coursera.org/specializations/deep-learning"
+    },
+    {
+      "courseName": "Data Structures and Algorithms in Java",
+      "courseTeacher": "David Williams",
+      "courseProvider": "Udacity",
+      "courseRating": 4.9,
+      "courseDuration": "20 hours",
+      "coursePrice": "₹4,200",
+      "courseLink": "https://www.udacity.com/course/data-structures-and-algorithms-nanodegree--nd256"
+    },
+    {
+      "courseName": "AI and Machine Learning",
+      "courseTeacher": "Sarah Johnson",
+      "courseProvider": "edX",
+      "courseRating": 4.6,
+      "courseDuration": "12 hours",
+      "coursePrice": "₹3,000",
+      "courseLink": "https://www.edx.org/learn/artificial-intelligence"
+    },
+    {
+      "courseName": "Web Development Bootcamp",
+      "courseTeacher": "Mike Brown",
+      "courseProvider": "freeCodeCamp",
+      "courseRating": 4.8,
+      "courseDuration": "30 hours",
+      "coursePrice": "Free",
+      "courseLink": "https://www.freecodecamp.org/news/learn-web-development-free-full-stack-developer-courses-for-beginners/"
+    },
+    {
+      "courseName": "Full Stack Web Development with Angular",
+      "courseTeacher": "Emily Clark",
+      "courseProvider": "Pluralsight",
+      "courseRating": 4.7,
+      "courseDuration": "25 hours",
+      "coursePrice": "₹2,800",
+      "courseLink": "https://www.pluralsight.com/paths/angular-development"
+    },
+    {
+      "courseName": "JavaScript Essentials",
+      "courseTeacher": "Mark Green",
+      "courseProvider": "LinkedIn Learning",
+      "courseRating": 4.9,
+      "courseDuration": "8 hours",
+      "coursePrice": "₹1,500",
+      "courseLink": "https://www.linkedin.com/learning/javascript-essential-training"
+    },
+    {
+      "courseName": "Introduction to Cloud Computing",
+      "courseTeacher": "Michael Roberts",
+      "courseProvider": "AWS Training",
+      "courseRating": 4.5,
+      "courseDuration": "10 hours",
+      "coursePrice": "₹2,000",
+      "courseLink": "https://aws.amazon.com/training/"
+    },
+    {
+      "courseName": "Data Science and Analytics",
+      "courseTeacher": "Linda Davis",
+      "courseProvider": "Coursera",
+      "courseRating": 4.8,
+      "courseDuration": "40 hours",
+      "coursePrice": "₹5,500",
+      "courseLink": "https://www.coursera.org/browse/data-science"
+    },
+    {
+      "courseName": "Blockchain and Cryptocurrency Explained",
+      "courseTeacher": "John Anderson",
+      "courseProvider": "edX",
+      "courseRating": 4.4,
+      "courseDuration": "18 hours",
+      "coursePrice": "₹2,400",
+      "courseLink": "https://www.edx.org/learn/blockchain"
+    },
+    
+        {
+          "courseName": "Python for Data Science and Machine Learning Bootcamp",
+          "courseTeacher": "Jose Portilla",
+          "courseProvider": "Udemy",
+          "courseRating": 4.6,
+          "courseDuration": "25 hours",
+          "coursePrice": "₹3,299",
+          "courseLink": "https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/"
+        },
+        {
+          "courseName": "The Complete Web Developer in 2024: Zero to Mastery",
+          "courseTeacher": "Andrei Neagoie",
+          "courseProvider": "Udemy",
+          "courseRating": 4.7,
+          "courseDuration": "35 hours",
+          "coursePrice": "₹3,499",
+          "courseLink": "https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/"
+        },
+        {
+          "courseName": "Google Cloud Certification: Cloud Architect",
+          "courseTeacher": "Google Cloud Training",
+          "courseProvider": "Coursera",
+          "courseRating": 4.8,
+          "courseDuration": "50 hours",
+          "coursePrice": "₹6,000",
+          "courseLink": "https://www.coursera.org/professional-certificates/google-cloud-architect"
+        },
+        {
+          "courseName": "iOS 16 & Swift 5: Complete iOS App Development Bootcamp",
+          "courseTeacher": "Dr. Angela Yu",
+          "courseProvider": "Udemy",
+          "courseRating": 4.9,
+          "courseDuration": "55 hours",
+          "coursePrice": "₹3,999",
+          "courseLink": "https://www.udemy.com/course/ios-13-app-development-bootcamp/"
+        },
+        {
+          "courseName": "Ethical Hacking for Beginners",
+          "courseTeacher": "Zaid Sabih",
+          "courseProvider": "Udemy",
+          "courseRating": 4.7,
+          "courseDuration": "15 hours",
+          "coursePrice": "₹1,999",
+          "courseLink": "https://www.udemy.com/course/learn-ethical-hacking-from-scratch/"
+        },
+        {
+          "courseName": "AWS Certified Solutions Architect - Associate",
+          "courseTeacher": "Stephane Maarek",
+          "courseProvider": "Udemy",
+          "courseRating": 4.7,
+          "courseDuration": "27 hours",
+          "coursePrice": "₹3,299",
+          "courseLink": "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/"
+        },
+        {
+          "courseName": "The Complete JavaScript Course 2024: From Zero to Expert!",
+          "courseTeacher": "Jonas Schmedtmann",
+          "courseProvider": "Udemy",
+          "courseRating": 4.8,
+          "courseDuration": "69 hours",
+          "coursePrice": "₹3,499",
+          "courseLink": "https://www.udemy.com/course/the-complete-javascript-course/"
+        },
+        {
+          "courseName": "Machine Learning A-Z: Hands-On Python & R In Data Science",
+          "courseTeacher": "Kirill Eremenko",
+          "courseProvider": "Udemy",
+          "courseRating": 4.6,
+          "courseDuration": "44 hours",
+          "coursePrice": "₹3,299",
+          "courseLink": "https://www.udemy.com/course/machinelearning/"
+        },
+        {
+          "courseName": "Docker and Kubernetes: The Complete Guide",
+          "courseTeacher": "Stephen Grider",
+          "courseProvider": "Udemy",
+          "courseRating": 4.7,
+          "courseDuration": "23 hours",
+          "coursePrice": "₹3,299",
+          "courseLink": "https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/"
+        },
+        {
+          "courseName": "The Complete SQL Bootcamp 2024: Go from Zero to Hero",
+          "courseTeacher": "Jose Portilla",
+          "courseProvider": "Udemy",
+          "courseRating": 4.7,
+          "courseDuration": "9 hours",
+          "coursePrice": "₹1,999",
+          "courseLink": "https://www.udemy.com/course/the-complete-sql-bootcamp/"
+        },
+        
+            {
+              "courseName": "MongoDB Basics",
+              "courseTeacher": "MongoDB Instructors",
+              "courseProvider": "MongoDB University",
+              "courseRating": 4.8,
+              "courseDuration": "10 hours",
+              "coursePrice": "Free",
+              "courseLink": "https://university.mongodb.com/courses/M001"
+            },
+            {
+              "courseName": "The Complete Node.js Developer Course",
+              "courseTeacher": "Andrew Mead",
+              "courseProvider": "Udemy",
+              "courseRating": 4.7,
+              "courseDuration": "35 hours",
+              "coursePrice": "₹499",
+              "courseLink": "https://www.udemy.com/course/the-complete-nodejs-developer-course-2/"
+            },
+            {
+              "courseName": "Express.js Crash Course",
+              "courseTeacher": "FreeCodeCamp Team",
+              "courseProvider": "FreeCodeCamp (YouTube)",
+              "courseRating": 4.9,
+              "courseDuration": "1 hour",
+              "coursePrice": "Free",
+              "courseLink": "https://www.youtube.com/watch?v=L72fhGm1tfE"
+            },
+            {
+              "courseName": "MERN Stack Front To Back",
+              "courseTeacher": "Brad Traversy",
+              "courseProvider": "Udemy",
+              "courseRating": 4.8,
+              "courseDuration": "12 hours",
+              "coursePrice": "₹1,299",
+              "courseLink": "https://www.udemy.com/course/mern-stack-front-to-back/"
+            },
+            {
+              "courseName": "Node.js, Express, MongoDB & More: The Complete Bootcamp",
+              "courseTeacher": "Jonas Schmedtmann",
+              "courseProvider": "Udemy",
+              "courseRating": 4.7,
+              "courseDuration": "40 hours",
+              "coursePrice": "₹3,499",
+              "courseLink": "https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/"
+            },
+            {
+              "courseName": "Building RESTful APIs with Node.js and Express",
+              "courseTeacher": "Eduardo Freitas",
+              "courseProvider": "Coursera",
+              "courseRating": 4.6,
+              "courseDuration": "15 hours",
+              "coursePrice": "Free (Audit)",
+              "courseLink": "https://www.coursera.org/learn/nodejs-express-mongodb"
+            },
+            {
+              "courseName": "MongoDB for Node.js Developers",
+              "courseTeacher": "MongoDB University",
+              "courseProvider": "MongoDB",
+              "courseRating": 4.7,
+              "courseDuration": "8 hours",
+              "coursePrice": "Free",
+              "courseLink": "https://university.mongodb.com/courses/M220JS"
+            },
+            {
+              "courseName": "Full Stack Open (Node, Express, React, MongoDB)",
+              "courseTeacher": "University of Helsinki",
+              "courseProvider": "MOOC.fi",
+              "courseRating": 4.9,
+              "courseDuration": "150 hours",
+              "coursePrice": "Free",
+              "courseLink": "https://fullstackopen.com/en/"
+            },
+            {
+              "courseName": "Learn Express.js (Interactive Tutorial)",
+              "courseTeacher": "Codecademy",
+              "courseProvider": "Codecademy",
+              "courseRating": 4.5,
+              "courseDuration": "6 hours",
+              "coursePrice": "Free Trial",
+              "courseLink": "https://www.codecademy.com/learn/learn-express"
+            },
+            {
+              "courseName": "MERN Stack E-Commerce App (Project-Based)",
+              "courseTeacher": "Lama Dev",
+              "courseProvider": "YouTube",
+              "courseRating": 4.8,
+              "courseDuration": "10 hours",
+              "coursePrice": "Free",
+              "courseLink": "https://www.youtube.com/watch?v=K8YELRmUb5o"
+            },
+            
+                {
+                  "courseName": "Kotlin for Beginners: Learn Programming With Kotlin",
+                  "courseTeacher": "JetBrains",
+                  "courseProvider": "JetBrains Academy",
+                  "courseRating": 4.8,
+                  "courseDuration": "20 hours",
+                  "coursePrice": "Free (Basic) / Paid (Pro)",
+                  "courseLink": "https://hyperskill.org/tracks/18"
+                },
+                {
+                  "courseName": "Android Kotlin Developer Nanodegree",
+                  "courseTeacher": "Google Experts",
+                  "courseProvider": "Udacity",
+                  "courseRating": 4.7,
+                  "courseDuration": "4 months",
+                  "coursePrice": "₹25,000",
+                  "courseLink": "https://www.udacity.com/course/android-kotlin-developer-nanodegree--nd940"
+                },
+                {
+                  "courseName": "The Complete Android 14 & Kotlin Development Masterclass",
+                  "courseTeacher": "Denis Panjuta",
+                  "courseProvider": "Udemy",
+                  "courseRating": 4.7,
+                  "courseDuration": "56 hours",
+                  "coursePrice": "₹3,499",
+                  "courseLink": "https://www.udemy.com/course/android-kotlin-developer/"
+                },
+                {
+                  "courseName": "Advanced Android with Kotlin",
+                  "courseTeacher": "Google Developers",
+                  "courseProvider": "Udacity",
+                  "courseRating": 4.8,
+                  "courseDuration": "2 months",
+                  "coursePrice": "Free",
+                  "courseLink": "https://www.udacity.com/course/advanced-android-with-kotlin--ud940"
+                },
+                {
+                  "courseName": "HTML and CSS Crash Course",
+                  "courseTeacher": "Brad Traversy",
+                  "courseProvider": "Traversy Media (YouTube)",
+                  "courseRating": 4.9,
+                  "courseDuration": "2 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://www.youtube.com/watch?v=hu-q2zYwEYs"
+                },
+                {
+                  "courseName": "Responsive Web Design Certification",
+                  "courseTeacher": "freeCodeCamp Team",
+                  "courseProvider": "freeCodeCamp",
+                  "courseRating": 4.8,
+                  "courseDuration": "300 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://www.freecodecamp.org/learn/2022/responsive-web-design/"
+                },
+                {
+                  "courseName": "Modern HTML & CSS From The Beginning",
+                  "courseTeacher": "Brad Traversy",
+                  "courseProvider": "Udemy",
+                  "courseRating": 4.8,
+                  "courseDuration": "21 hours",
+                  "coursePrice": "₹1,299",
+                  "courseLink": "https://www.udemy.com/course/modern-html-css-from-the-beginning/"
+                },
+                {
+                  "courseName": "CSS Grid & Flexbox for Responsive Layouts",
+                  "courseTeacher": "Wes Bos",
+                  "courseProvider": "Wes Bos Courses",
+                  "courseRating": 4.9,
+                  "courseDuration": "5 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://cssgrid.io/"
+                },
+                {
+                  "courseName": "Kotlin Coroutines by Example",
+                  "courseTeacher": "Philipp Lackner",
+                  "courseProvider": "YouTube",
+                  "courseRating": 4.8,
+                  "courseDuration": "3 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://www.youtube.com/watch?v=tYcqn48SMT8"
+                },
+                {
+                  "courseName": "Android Basics in Kotlin",
+                  "courseTeacher": "Google Developers",
+                  "courseProvider": "Google",
+                  "courseRating": 4.7,
+                  "courseDuration": "60 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://developer.android.com/courses/android-basics-kotlin/course"
+                },
+                {
+                  "courseName": "Frontend Masters - CSS & JavaScript Deep Dive",
+                  "courseTeacher": "Jen Kramer",
+                  "courseProvider": "Frontend Masters",
+                  "courseRating": 4.9,
+                  "courseDuration": "18 hours",
+                  "coursePrice": "Paid (Subscription)",
+                  "courseLink": "https://frontendmasters.com/courses/getting-started-css/"
+                },
+                {
+                  "courseName": "Jetpack Compose for Android Developers",
+                  "courseTeacher": "Stevdza-San",
+                  "courseProvider": "YouTube",
+                  "courseRating": 4.8,
+                  "courseDuration": "8 hours",
+                  "coursePrice": "Free",
+                  "courseLink": "https://www.youtube.com/watch?v=8YPXv7xKh2w"
+                }
+              
+          
+    
+  ]
+  
