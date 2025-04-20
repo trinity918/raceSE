@@ -16,10 +16,10 @@
         {
             "title": "Former sub-committee member",
             "company": "Rotaract Club of SPIT",
-            "location": "SPIT",
+            "location": "",
             "dates": "September, 2023 - August, 2024",
             "details": [
-                "Mentored school children at Abhyudaya SPJIMR, enhancing their academic performance by 20 percent through personalized guidance."
+                "Mentored school children at Abhyudaya SPJIMR, impacting 50 students positively."
             ]
         }
     ],
@@ -29,9 +29,9 @@
             "stack": "Python, Machine Learning",
             "dates": "November, 2024",
             "details": [
-                "Developed an ML model leveraging machine learning and real-time weather data to predict flood risks with 95% accuracy.",
-                "Processed historical flood data, meteorological data, and elevation data to enhance model precision.",
-                "Implemented various ML models like random forest, regression, neural networks, achieving an accuracy of up to 95%.",
+                "Developed an ML model leveraging real-time weather data to predict flood risks, achieving a 95% accuracy rate.",
+                "Cleaned and processed historical flood data, meteorological data, and elevation data to enhance model accuracy.",
+                "Implemented various ML models like random forest, regression, neural networks, achieving up to 95% accuracy.",
                 "Deployed the model using Google Colab for testing and analysis, ensuring accessibility and ease of use."
             ]
         },
@@ -42,8 +42,8 @@
             "details": [
                 "Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history.",
                 "Implemented a secure login system with hashed password storage to prevent security threats like SQL injection.",
-                "Optimized database queries and server responses for efficient data retrieval and seamless streaming.",
-                "Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL."
+                "Optimized database queries and server responses for seamless streaming experience.",
+                "Developed an interactive front-end using JavaScript and a secure back-end with Python and SQL."
             ]
         },
         {
@@ -51,11 +51,11 @@
             "stack": "Javascript",
             "dates": "March, 2025",
             "details": [
-                "Awarded best solution in BBB-Frontend Hackathon at SPIT for problem statement.",
-                "Created a responsive front-end with React.js and Tailwind CSS, ensuring seamless user experience across devices.",
-                "Designed interactive UI components showcasing financial learning modules, calculators, community posts, and literacy courses.",
-                "Focused on user-centric design to provide women easy access to financial resources, tools, and mentorship programs.",
-                "Optimized for accessibility and performance, ensuring quick website load times and usability for all audiences.",
+                "Awarded best solution in BBB-Frontend Hackathon at SPIT.",
+                "Created a responsive front-end using React.js and Tailwind CSS for seamless user experience.",
+                "Designed interactive UI components for financial learning modules, calculators, community posts, and literacy courses.",
+                "Focused on user-centric design to empower women with financial resources and mentorship programs.",
+                "Optimized for accessibility and performance, ensuring fast loading and usability for all audiences.",
                 "Managed social media pages, marketing deals, and volunteered for social work."
             ]
         }
