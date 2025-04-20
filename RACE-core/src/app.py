@@ -3,7 +3,7 @@ import os
 from werkzeug.utils import secure_filename
 from first_integration import file_to_resume
 
-from rag import return_json_data
+from rag import return_data_without_json
 
 app  = Flask(__name__)
 
@@ -40,16 +40,16 @@ def handle_upload():
     
     return {'error': 'Invalid file type. Allowed types are PDF, TXT, DOC, PNG AND JPG.'}, 400
 
-@app.route("/get_skills_data", methods=['GET'])
-def get_data():
+# @app.route("/get_skills_data", methods=['GET'])
+# def get_data():
 
-    skills, missing, cover_letters = return_json_data()
+#     skills, missing, cover_letters = return_data_without_json()
 
-    try:
-        return {'skills': skills, 'missing': missing, 'cover_letters': cover_letters}, 200
+#     try:
+#         return {'skills': skills, 'missing': missing, 'cover_letters': cover_letters}, 200
     
-    except:
-        return {'error': 'Unexpected error occured'}, 400
+#     except:
+#         return {'error': 'Unexpected error occured'}, 400
     
 @app.route("/get_resume_data", methods=['GET'])
 def get_data_resume():
