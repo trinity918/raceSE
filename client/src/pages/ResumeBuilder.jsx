@@ -6,6 +6,7 @@ import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ATS from './ATS';
 
 const ResumeBuilder = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -80,7 +81,7 @@ const ResumeBuilder = () => {
   };
 
   const handleATSCheck = () => {
-    navigate('/atsscore');
+    navigate('/ats');
   };
 
   return (

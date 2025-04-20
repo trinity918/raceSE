@@ -9,6 +9,7 @@ import CoverLetter from './pages/CoverLetter';
 import Opportunity from './pages/Opportunity';
 import History from './pages/History';
 import Settings from './pages/Settings';
+import ATS from './pages/ATS'; // ✅ Import the ATS page
 
 // Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
@@ -83,6 +84,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/ats"
+            element={
+              <ProtectedRoute>
+                <ATS />
+              </ProtectedRoute>
+            }
+          /> {/* ✅ ATS route added here */}
         </Routes>
       </Router>
     </AuthProvider>
