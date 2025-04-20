@@ -16,9 +16,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const menuItems = [
     { path: '/resume-builder', icon: '📄', label: 'Resume Builder' },
     { path: '/cover-letter', icon: '📑', label: 'Cover Page Generator' },
+    { path: '/ats', icon: '🧠', label: 'ATS Analyzer' }, // ✅ Added
     { path: '/opportunities', icon: '🎯', label: 'Opportunities & Recommendations' },
     { path: '/career-profile', icon: '👤', label: 'Career Profile' },
-    { path: '/version-control', icon: '🔄', label: 'Version Control' },
+    
   ];
 
   return (
