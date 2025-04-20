@@ -48,8 +48,8 @@ const OpportunitySync = () => {
   
   // Hardcoded user skills (later from resume)
   const userProfile = {
-    name: "Jake Ryan",
-    title: "Software Developer",
+    name: "Aishani Singh",
+    title: "MERN Stack Developer",
     experience: 3,
     skills: ["React", "Node.js", "JavaScript", "SQL", "Python", "Git"],
     education: "B.Tech in Computer Science",
