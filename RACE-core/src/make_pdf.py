@@ -1,4 +1,4 @@
-output_path = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
+output_path = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\output'
 
 import subprocess
 import os

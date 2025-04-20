@@ -13,7 +13,7 @@ import docx
 from dotenv import load_dotenv
 load_dotenv()
 
-assets_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\assets'
+assets_dir = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\assets'
 
 def get_text_from_pdf(file):
 

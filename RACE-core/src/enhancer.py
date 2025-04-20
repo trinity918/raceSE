@@ -8,7 +8,7 @@ api_key = 'sk-proj-4_cylhxbOW497VHWpRCTKoQSC2HHLqE-VSxcNoV2Dz1VCSh28a8y16uv9ACcD
 
 client = openai.OpenAI(api_key=os.getenv("KEY"))
 
-output_path = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
+output_path = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\output'
 
 resume_data = {
     "name": "Jake Ryan",
