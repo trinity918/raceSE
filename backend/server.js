@@ -6,8 +6,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/authRoutes');
-const coverUploadRoutes = require('./routes/coverUpload');
-const resumeUploadRoutes = require('./routes/resumeUpload'); // ✅ NEW
+
 
 // Check for required environment variables 
 if (!process.env.JWT_SECRET) {
@@ -23,15 +22,11 @@ const port = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cors());
 
-// Serve static cover pages
-app.use('/coverPages', express.static('uploads/coverPages')); // Optional if you store locally
-// Serve static resumes
-app.use('/resumes', express.static('uploads/resumes')); // Optional if you store locally
+
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/cover', coverUploadRoutes);
-app.use('/api/resume', resumeUploadRoutes); // ✅ NEW
+
 
 // Root route
 app.get('/', (req, res) => {
