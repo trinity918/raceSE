@@ -5,18 +5,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
 
 import os
-import shutil
-
-import json
-
-from ast import literal_eval
+import re
 
 output_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
 assets_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\assets'
 db_location = "./vector_db"
-
-# if os.path.exists(db_location):
-#     shutil.rmtree(db_location)
 
 with open(os.path.join(output_dir, 'enhanced_resume.txt')) as f1, \
      open(os.path.join(assets_dir, 'sample_job_desc.txt')) as f2:
@@ -43,7 +36,6 @@ vector_store = Chroma(
     persist_directory=db_location,
     embedding_function=embeddings
 )
-
 vector_store.add_documents(documents)
 
 retriever = vector_store.as_retriever(search_kwargs={"k": 10})
@@ -55,22 +47,19 @@ Find:
 1. Common skills between the resume and the JD
 2. Skills missing in the resume but mentioned in JD
 
-Return them in a json format only. No extra text.
-Also generate 2 cover letters to the company based on the skills, and also return them in the json format.
+Return them in the following plain text format:
 
-Here are some resume chunks:
-{chunks}
+---SKILLS---
+<list each skill on a new line>
 
-here is the expected json format:
+---MISSING---
+<list each missing skill on a new line>
 
-{{
-    skills: [],
-    missing: [],
-    cover_letters: []
-}}
+---COVER LETTER 1---
+<first cover letter, minimum 300 words>
 
-DO NOT ADD ANY ```json and ``` in the output.
-For cover_letters, only provide complete cv strings, make each one to be atleadt 300 words.
+---COVER LETTER 2---
+<second cover letter, minimum 300 words>
 """
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
@@ -78,10 +67,35 @@ chain = prompt | model
 docs = retriever.invoke("skills in resume and job description")
 retrieved_chunks = "\n\n".join([doc.page_content for doc in docs])
 
-def return_json_data():
-
+def return_data_without_json():
     result = chain.invoke({"chunks": retrieved_chunks})
 
-    result = json.loads(result)
-    print(result)
-    return result['skills'], result['missing'], result['cover_letters']
+    skills = []
+    missing = []
+    cover_letters = []
+
+    try:
+        skill_match = re.search(r'---SKILLS---(.*?)---MISSING---', result, re.DOTALL | re.IGNORECASE)
+        if skill_match:
+            skills = [line.strip() for line in skill_match.group(1).splitlines() if line.strip()]
+
+        missing_match = re.search(r'---MISSING---(.*?)(---COVER LETTER|\Z)', result, re.DOTALL | re.IGNORECASE)
+        if missing_match:
+            missing = [line.strip() for line in missing_match.group(1).splitlines() if line.strip()]
+
+        cl1 = re.search(r'---COVER LETTER 1---(.*?)(---COVER LETTER 2---|\Z)', result, re.DOTALL | re.IGNORECASE)
+        cl2 = re.search(r'---COVER LETTER 2---(.*)', result, re.DOTALL | re.IGNORECASE)
+
+        if cl1:
+            cover_letters.append(cl1.group(1).strip())
+        if cl2:
+            cover_letters.append(cl2.group(1).strip())
+
+    except Exception as e:
+        print("[ERROR] Failed to parse LLM output properly.")
+        print(e)
+        print("\n---- RAW RESULT FROM LLM ----\n")
+        print(result)
+
+    return skills, missing, cover_letters
+
