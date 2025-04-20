@@ -18,8 +18,6 @@ const ResumeBuilder = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   
-  const ngrokUrl = 'https://ebc5-103-104-226-58.ngrok-free.app';
-
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
@@ -38,17 +36,18 @@ const ResumeBuilder = () => {
       formData.append('file', acceptedFiles[0]);
       
       try {
-        // Send to backend - replace with your actual API endpoint
         const response = await fetch('http://127.0.0.1:5000/upload', {
           method: 'POST',
           body: formData,
         });
         
-        // Create a URL for the PDF blob
-        const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        if (!response.ok) throw new Error('Failed to get PDF');
+        
+        const pdfBlob = await response.blob();
         const url = URL.createObjectURL(pdfBlob);
         setPdfUrl(url);
         setSuccess(true);
+        
       } catch (err) {
         console.error('Error:', err);
         setError(err.response?.data?.message || 'Failed to process resume. Please try again.');
@@ -73,7 +72,8 @@ const ResumeBuilder = () => {
     if (pdfUrl) {
       const link = document.createElement('a');
       link.href = pdfUrl;
-      link.download = 'enhanced-resume.pdf';
+      link.download = 'output.pdf';
+      console.log(pdfUrl)
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

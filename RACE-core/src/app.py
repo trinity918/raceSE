@@ -38,7 +38,7 @@ def handle_upload():
 
         pdf_path = os.path.join(OUTPUT_FOLDER, 'output.pdf')
 
-        return send_file(pdf_path, as_attachment=True)
+        return send_file(pdf_path)
     
     return {'error': 'Invalid file type. Allowed types are PDF, TXT, DOC, PNG AND JPG.'}, 400
 

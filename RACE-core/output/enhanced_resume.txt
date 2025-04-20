@@ -12,27 +12,17 @@
             "dates": "Graduating in May 2027"
         }
     ],
-    "experience": [
-        {
-            "title": "Former sub-committee member",
-            "company": "Rotaract Club of SPIT",
-            "location": "SPIT",
-            "dates": "September, 2023 - August, 2024",
-            "details": [
-                "Mentored school children at Abhyudaya SPJIMR, enhancing their academic performance by 20 percent through personalized guidance."
-            ]
-        }
-    ],
+    "experience": [],
     "projects": [
         {
             "name": "Flood Risk Prediction Model (Machine Learning Mini-Project)",
             "stack": "Python, Machine Learning",
             "dates": "November, 2024",
             "details": [
-                "Developed an ML model leveraging machine learning and real-time weather data to predict flood risks with 95% accuracy.",
-                "Processed historical flood data, meteorological data, and elevation data to enhance model precision.",
-                "Implemented various ML models like random forest, regression, neural networks, achieving an accuracy of up to 95%.",
-                "Deployed the model using Google Colab for testing and analysis, ensuring accessibility and ease of use."
+                "Designed and implemented an ML model leveraging machine learning techniques and real-time weather data to accurately predict flood risks.",
+                "Processed and cleaned historical flood data, meteorological data, and elevation data to significantly enhance the accuracy of the model.",
+                "Utilized various ML models such as random forest, regression, and neural networks, achieving an impressive accuracy of up to 95 percent.",
+                "Deployed the model on Google Colab for thorough testing and analysis, ensuring easy accessibility and usability."
             ]
         },
         {
@@ -40,10 +30,10 @@
             "stack": "Python, SQL, Javascript",
             "dates": "December, 2024",
             "details": [
-                "Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history.",
-                "Implemented a secure login system with hashed password storage to prevent security threats like SQL injection.",
-                "Optimized database queries and server responses for efficient data retrieval and seamless streaming.",
-                "Developed an interactive front-end with JavaScript and a secure back-end using Python and SQL."
+                "Designed and optimized a robust SQL database structure for efficient content storage, user authentication, and streaming history.",
+                "Implemented a secure login system with hashed password storage to mitigate security risks like SQL injection.",
+                "Enhanced database query performance and server response times for seamless data retrieval and streaming experience.",
+                "Developed an interactive front-end using JavaScript and a secure back-end with Python and SQL."
             ]
         },
         {
@@ -51,12 +41,11 @@
             "stack": "Javascript",
             "dates": "March, 2025",
             "details": [
-                "Awarded best solution in BBB-Frontend Hackathon at SPIT for problem statement.",
-                "Created a responsive front-end with React.js and Tailwind CSS, ensuring seamless user experience across devices.",
-                "Designed interactive UI components showcasing financial learning modules, calculators, community posts, and literacy courses.",
-                "Focused on user-centric design to provide women easy access to financial resources, tools, and mentorship programs.",
-                "Optimized for accessibility and performance, ensuring quick website load times and usability for all audiences.",
-                "Managed social media pages, marketing deals, and volunteered for social work."
+                "Recognized with the Best Solution award for the problem statement at BBB-Frontend Hackathon hosted at SPIT.",
+                "Crafted a responsive front-end interface with React.js and Tailwind CSS to ensure a seamless user experience on various devices.",
+                "Designed engaging UI components to showcase key features such as financial learning modules, calculators, community posts, and literacy courses.",
+                "Focused on user-centric design principles to empower women with easy access to financial resources, tools, and mentorship programs.",
+                "Optimized the platform for accessibility and performance, resulting in fast loading times and usability for all audiences."
             ]
         }
     ],

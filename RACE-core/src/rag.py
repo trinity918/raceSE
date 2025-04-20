@@ -16,7 +16,7 @@ You are an expert resume and job description reader and analyser.
 Find:
 1. Common skills between the resume and the JD.
 2. Skills missing in the resume but mentioned in JD.
-3. 2 Cover letters in the range of 150-200 words.
+3. 1 Cover letter in the range of 150-200 words.
 
 DO NOT INCLUDE '```json' and '```' in the OUTPUT.
 

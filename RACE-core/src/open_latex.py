@@ -83,6 +83,146 @@ resume_data = {
     }
 }
 
+latex_template = r"""
+{# Set up custom hrefs #}
+{%- set email_href = 'mailto:' ~ email -%}
+{%- set linkedin_href = 'https://linkedin.com/in/' ~ linkedin -%}
+{%- set github_href = 'https://github.com/' ~ github -%}
+
+{% raw %}
+\documentclass[letterpaper,11pt]{article}
+
+% Packages
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Page margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+% Link style
+\urlstyle{same}
+
+% Layout
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% PDF Unicode
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small#4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+{% endraw %}
+
+\begin{document}
+
+%----------Heading----------
+\begin{center}
+  \textbf{\Huge \scshape {{ name }}} \\ \vspace{1pt}
+  \small {{ phone }} $|$ \href{{{{ email_href }}}}{ {{ email }} } $|$
+  \href{{{{ linkedin_href }}}}{ {{ linkedin }} } $|$
+  \href{{{{ github_href }}}}{ {{ github }} }
+\end{center}
+
+%----------Education----------
+\section{Education}
+\resumeSubHeadingListStart
+{% for edu in education %}
+  \resumeSubheading
+    { {{ edu.institution }} }{ {{ edu.location }} }
+    { {{ edu.degree }} }{ {{ edu.dates }} }
+{% endfor %}
+\resumeSubHeadingListEnd
+
+%----------Experience----------
+\section{Experience}
+\resumeSubHeadingListStart
+{% for job in experience %}
+  \resumeSubheading
+    { {{ job.title }} }{ {{ job.dates }} }
+    { {{ job.company }} }{ {{ job.location }} }
+  \resumeItemListStart
+  {% for item in job.details %}
+    \resumeItem{ {{ item }} }
+  {% endfor %}
+  \resumeItemListEnd
+{% endfor %}
+\resumeSubHeadingListEnd
+
+%----------Projects----------
+\section{Projects}
+\resumeSubHeadingListStart
+{% for project in projects %}
+  \resumeProjectHeading
+    {\textbf{ {{ project.name }} } $|$ \emph{ {{ project.stack }} }}{ {{ project.dates }} }
+  \resumeItemListStart
+  {% for item in project.details %}
+    \resumeItem{ {{ item }} }
+  {% endfor %}
+  \resumeItemListEnd
+{% endfor %}
+\resumeSubHeadingListEnd
+
+%----------Technical Skills----------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+  \resumeItemListStart
+    \resumeItem{\textbf{Languages}: {{ skills.languages }}}
+    \resumeItem{\textbf{Frameworks}: {{ skills.frameworks }}}
+    \resumeItem{\textbf{Developer Tools}: {{ skills.tools }}}
+    \resumeItem{\textbf{Libraries}: {{ skills.libraries }}}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\end{document}
+"""
+
 def generate_tex(data):
 
     prompt = f"""
@@ -93,6 +233,12 @@ def generate_tex(data):
     Do Not Include any ```latex and ``` before and after the latex code and please fix all bugs.
 
     Make the Latex Format as good as possible, include linings and proper highlighting.
+
+    You can use this latex template as an inspiration:
+    -- Latex Template --
+    {latex_template}
+
+    If some columns and values are missing, REMOVE them from the latex code, BUT MAKE SURE THAT IT STILL COMPILES.
 
     ONLY return the final LaTeX code.
 
