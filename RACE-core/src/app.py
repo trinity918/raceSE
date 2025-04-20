@@ -3,12 +3,14 @@ import os
 from werkzeug.utils import secure_filename
 from first_integration import file_to_resume
 
-from rag import return_data_without_json
+from flask_cors import CORS
+from rag import return_data
 
 app  = Flask(__name__)
+CORS(app)
 
-ASSETS_FOLDER = r'C:\Users\Jash\OneDrive\Desktop\RACE\assets'
-OUTPUT_FOLDER = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
+ASSETS_FOLDER = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\assets'
+OUTPUT_FOLDER = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\output'
 
 ALLOWED_EXTENSIONS = {'pdf', 'txt', 'docx', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -40,16 +42,16 @@ def handle_upload():
     
     return {'error': 'Invalid file type. Allowed types are PDF, TXT, DOC, PNG AND JPG.'}, 400
 
-# @app.route("/get_skills_data", methods=['GET'])
-# def get_data():
+@app.route("/get_skills_data", methods=['GET'])
+def get_data():
 
-#     skills, missing, cover_letters = return_data_without_json()
+    skills, missing, cover_letters = return_data()
 
-#     try:
-#         return {'skills': skills, 'missing': missing, 'cover_letters': cover_letters}, 200
+    try:
+        return {'skills': skills, 'missing': missing, 'cover_letters': cover_letters}, 200
     
-#     except:
-#         return {'error': 'Unexpected error occured'}, 400
+    except:
+        return {'error': 'Unexpected error occured'}, 400
     
 @app.route("/get_resume_data", methods=['GET'])
 def get_data_resume():

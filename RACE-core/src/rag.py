@@ -1,101 +1,79 @@
-from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import Chroma
-from langchain_ollama.llms import OllamaLLM
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.documents import Document
+import openai
+import json, os
 
-import os
-import re
+from dotenv import load_dotenv
+load_dotenv()
 
-output_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\output'
-assets_dir = r'C:\Users\Jash\OneDrive\Desktop\RACE\assets'
-db_location = "./vector_db"
+assets_dir = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\assets'
+output_dir = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\output'
 
-with open(os.path.join(output_dir, 'enhanced_resume.txt')) as f1, \
-     open(os.path.join(assets_dir, 'sample_job_desc.txt')) as f2:
-    resume_text = f1.read()
-    jd_text = f2.read()
+client = openai.OpenAI(api_key=os.getenv("KEY"))
 
-combined_text = f"Resume:\n{resume_text}\n\nJob Description:\n{jd_text}"
+def get_openai_response(resume, jd):
+    prompt = f"""
+You are an expert resume and job description reader and analyser.
 
-def chunk_text(text, chunk_size=500, overlap=100):
-    chunks = []
-    start = 0
-    while start < len(text):
-        end = start + chunk_size
-        chunks.append(text[start:end])
-        start += chunk_size - overlap
-    return chunks
-
-chunks = chunk_text(combined_text)
-documents = [Document(page_content=chunk) for chunk in chunks]
-
-embeddings = OllamaEmbeddings(model="mxbai-embed-large")
-vector_store = Chroma(
-    collection_name="resume",
-    persist_directory=db_location,
-    embedding_function=embeddings
-)
-vector_store.add_documents(documents)
-
-retriever = vector_store.as_retriever(search_kwargs={"k": 10})
-model = OllamaLLM(model="llama3.2")
-
-template = """
-You are an expert resume and Job description reader and analyser.
 Find:
-1. Common skills between the resume and the JD
-2. Skills missing in the resume but mentioned in JD
+1. Common skills between the resume and the JD.
+2. Skills missing in the resume but mentioned in JD.
+3. 2 Cover letters in the range of 150-200 words.
 
-Return them in the following plain text format:
+DO NOT INCLUDE '```json' and '```' in the OUTPUT.
 
----SKILLS---
-<list each skill on a new line>
+Return in this JSON format (no markdown, no explanation, just plain text):
 
----MISSING---
-<list each missing skill on a new line>
+{{
+  "skills": ["Skill1", "Skill2"],
+  "missing": ["MissingSkill1"],
+  "cover_letters": [
+    "Cover letter 1 text here.",
+    "Cover letter 2 text here."
+  ]
+}}
 
----COVER LETTER 1---
-<first cover letter, minimum 300 words>
+Resume:
+{resume}
 
----COVER LETTER 2---
-<second cover letter, minimum 300 words>
+Job Description:
+{jd}
 """
-prompt = ChatPromptTemplate.from_template(template)
-chain = prompt | model
-
-docs = retriever.invoke("skills in resume and job description")
-retrieved_chunks = "\n\n".join([doc.page_content for doc in docs])
-
-def return_data_without_json():
-    result = chain.invoke({"chunks": retrieved_chunks})
-
-    skills = []
-    missing = []
-    cover_letters = []
 
     try:
-        skill_match = re.search(r'---SKILLS---(.*?)---MISSING---', result, re.DOTALL | re.IGNORECASE)
-        if skill_match:
-            skills = [line.strip() for line in skill_match.group(1).splitlines() if line.strip()]
+        response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        temperature=0.7,
+        messages=[
+            {"role": "user", "content": prompt},
+        ]
+    )
 
-        missing_match = re.search(r'---MISSING---(.*?)(---COVER LETTER|\Z)', result, re.DOTALL | re.IGNORECASE)
-        if missing_match:
-            missing = [line.strip() for line in missing_match.group(1).splitlines() if line.strip()]
-
-        cl1 = re.search(r'---COVER LETTER 1---(.*?)(---COVER LETTER 2---|\Z)', result, re.DOTALL | re.IGNORECASE)
-        cl2 = re.search(r'---COVER LETTER 2---(.*)', result, re.DOTALL | re.IGNORECASE)
-
-        if cl1:
-            cover_letters.append(cl1.group(1).strip())
-        if cl2:
-            cover_letters.append(cl2.group(1).strip())
+        content = response.choices[0].message.content
+        return json.loads(content)
 
     except Exception as e:
-        print("[ERROR] Failed to parse LLM output properly.")
-        print(e)
-        print("\n---- RAW RESULT FROM LLM ----\n")
-        print(result)
+        print("[!] Failed to parse response as JSON:", e)
+        print("Raw response:", content if 'content' in locals() else "No content received.")
+        return None
 
-    return skills, missing, cover_letters
+def return_data():
+    resume_text = ""
+    with open(os.path.join(output_dir, 'enhanced_resume.txt'), "r", encoding='utf-8') as file:
+        lines = file.readlines()
 
+    resume_text += ('\n').join(lines)
+
+    jd_text = ""
+    with open(os.path.join(assets_dir, 'sample_job_desc.txt'), "r", encoding='utf-8') as file:
+        lines_ = file.readlines()
+
+    jd_text += ('\n').join(lines_)   
+
+    result = get_openai_response(resume_text, jd_text)
+
+    if result:
+        skills = result["skills"]
+        missing = result["missing"]
+        cover_letters = result["cover_letters"]
+        return skills, missing, cover_letters
+    else:
+        return [], [], []

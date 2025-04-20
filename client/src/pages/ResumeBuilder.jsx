@@ -38,7 +38,7 @@ const ResumeBuilder = () => {
 
       try {
         // Send to backend - replace with your actual API endpoint
-        const response = await fetch('/api/convert-resume', {
+        const response = await fetch('http://127.0.0.1:5000/upload', {
           method: 'POST',
           body: formData,
         });
