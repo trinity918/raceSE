@@ -1,7 +1,11 @@
-import fitz  # PyMuPDF
+import fitz
 from PIL import Image, ImageDraw
+import os
+
+output_path = r'C:\Users\Jash\OneDrive\Documents\GitHub\RACE-SE-Hackathon-Repo\RACE-core\output'
 
 def highlight_resume_sections(pdf_path, output_image_path):
+
     doc = fitz.open(pdf_path)
     page = doc[0]
     pix = page.get_pixmap(dpi=150)
@@ -10,7 +14,6 @@ def highlight_resume_sections(pdf_path, output_image_path):
 
     blocks = page.get_text("dict")["blocks"]
 
-    # Target section titles and colors
     sections = {
         "contact": {
             "keywords": ["email", "phone", "github", "linkedin"],
@@ -30,11 +33,9 @@ def highlight_resume_sections(pdf_path, output_image_path):
         }
     }
 
-    # Normalize text for comparison
     def normalize(text):
         return text.lower().strip()
 
-    # Get a flat list of all lines with their bounding boxes
     lines_with_boxes = []
     for block in blocks:
         for line in block.get("lines", []):
@@ -56,3 +57,8 @@ def highlight_resume_sections(pdf_path, output_image_path):
 
     image.save(output_image_path)
     print(f"Saved highlighted image to: {output_image_path}")
+
+pdf_path = os.path.join(output_path, 'output.pdf')
+img_path = os.path.join(output_path, 'hr_img.png')
+
+highlight_resume_sections(pdf_path, img_path)
