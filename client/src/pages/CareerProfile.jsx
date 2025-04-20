@@ -19,78 +19,73 @@ const CareerProfile = () => {
 
   // Initial resume data
   const [resumeData, setResumeData] = useState({
-    name: "Jake Ryan",
-    phone: "123-456-7890",
-    email: "jake@su.edu",
-    linkedin: "linkedin.com/in/jake",
-    github: "github.com/jake",
-    education: [
-      {
-        institution: "Southwestern University",
-        location: "Georgetown, TX",
-        degree: "Bachelor of Arts in Computer Science, Minor in Business",
-        dates: "Aug. 2018 -- May 2021"
-      },
-      {
-        institution: "Blinn College",
-        location: "Bryan, TX",
-        degree: "Associate's in Liberal Arts",
-        dates: "Aug. 2014 -- May 2018"
-      }
+    "name": "AISHANI SINGH",
+    "phone": "+91 9321677477",
+    "email": "aishanis1234@gmail.com",
+    "linkedin": "",
+    "github": "github.com/aishan1singh",
+    "education": [
+        {
+            "institution": "Sardar Patel Institute of Technology",
+            "location": "Mumbai, IN",
+            "degree": "B.Tech, Computer Engineering",
+            "dates": "Graduating in May 2027"
+        }
     ],
-    experience: [
-      {
-        title: "Undergraduate Research Assistant",
-        company: "Texas A and M University",
-        location: "College Station, TX",
-        dates: "June 2020 -- Present",
-        details: [
-          "Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems",
-          "Developed a full-stack web app using Flask, React, PostgreSQL, Docker",
-          "Explored ways to visualize GitHub collaboration in classrooms"
-        ]
-      },
-      {
-        title: "Information Technology Support Specialist",
-        company: "Southwestern University",
-        location: "Georgetown, TX",
-        dates: "Sep. 2018 -- Present",
-        details: [
-          "Communicated with managers to set up campus computers",
-          "Troubleshot issues for students, faculty, and staff",
-          "Maintained computers and 200 printers across campus"
-        ]
-      }
+    "experience": [
+        {
+            "title": "Former sub-committee member",
+            "company": "Rotaract Club of SPIT",
+            "location": "SPIT",
+            "dates": "September, 2023 - August, 2024",
+            "details": [
+                "Mentored school children at Abhyudaya SPJIMR, fostering personal and academic growth."
+            ]
+        }
     ],
-    projects: [
-      {
-        name: "Gitlytics",
-        stack: "Python, Flask, React, PostgreSQL, Docker",
-        dates: "June 2020 -- Present",
-        details: [
-          "Developed full-stack app with Flask (REST API) and React frontend",
-          "Implemented GitHub OAuth and visualized collaboration data",
-          "Used Celery + Redis for async tasks"
-        ]
-      },
-      {
-        name: "Simple Paintball",
-        stack: "Spigot API, Java, Maven, TravisCI, Git",
-        dates: "May 2018 -- May 2020",
-        details: [
-          "Built Minecraft server plugin, 2K+ downloads and 4.5+ star rating",
-          "CI/CD with TravisCI on releases",
-          "Collaborated with community for feedback and improvements"
-        ]
-      }
+    "projects": [
+        {
+            "name": "Flood Risk Prediction Model (Machine Learning Mini-Project)",
+            "stack": "Python, Machine Learning",
+            "dates": "November, 2024",
+            "details": [
+                "Led the design of an ML model utilizing real-time weather data to predict flood risks.",
+                "Processed historical flood, meteorological, and elevation data to enhance model accuracy.",
+                "Implemented various ML models achieving an accuracy of up to 95% with algorithms like random forest and neural networks.",
+                "Deployed the model on Google Colab for testing and analysis, ensuring accessibility and ease of use."
+            ]
+        },
+        {
+            "name": "Napflix -  A Streaming Platform (DBMS Mini-Project)",
+            "stack": "Python, SQL, Javascript",
+            "dates": "December, 2024",
+            "details": [
+                "Designed and optimized a SQL database for efficient content storage and user authentication.",
+                "Implemented a secure login system with hashed password storage to mitigate security threats like SQL injection.",
+                "Optimized database queries and server responses for efficient data retrieval and streaming performance.",
+                "Developed an interactive front-end and secure back-end using Python, SQL, and JavaScript."
+            ]
+        },
+        {
+            "name": "SheFunds -  A Financial Literacy Platform for Women (Front-end Project)",
+            "stack": "Javascript",
+            "dates": "March, 2025",
+            "details": [
+                "Achieved best solution recognition in BBB-Frontend Hackathon at SPIT.",
+                "Developed a responsive front-end using React.js and Tailwind CSS for seamless user experience.",
+                "Designed interactive UI components showcasing financial learning modules, calculators, and community posts.",
+                "Focused on user-centric design to empower women with financial resources and mentorship programs.",
+                "Optimized for accessibility and performance, ensuring fast loading and usability for all users."
+            ]
+        }
     ],
-    skills: {
-      languages: "Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R",
-      frameworks: "React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI",
-      tools: "Git, Docker, TravisCI, GCP, VS Code, PyCharm, IntelliJ, Eclipse",
-      libraries: "pandas, NumPy, Matplotlib"
+    "skills": {
+        "languages": "C, C++, Java, Python, SQL, HTML, CSS, Javascript",
+        "frameworks": "",
+        "tools": "Bootstrap, Figma, Canva, Blender, Sculptris",
+        "libraries": ""
     }
-  });
+});
 
   // Calculate profile completeness
   const calculateCompleteness = () => {
