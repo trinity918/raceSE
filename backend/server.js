@@ -1,13 +1,14 @@
-// server.js or app.js
 require('dotenv').config();
 require('express-async-errors');
 
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+
 const authRoutes = require('./routes/authRoutes');
 
-// Check for required environment variables
+
+// Check for required environment variables 
 if (!process.env.JWT_SECRET) {
   console.error('ERROR: JWT_SECRET is not defined in environment variables');
   process.exit(1);
@@ -21,8 +22,11 @@ const port = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cors());
 
+
+
 // Routes
 app.use('/api/auth', authRoutes);
+
 
 // Root route
 app.get('/', (req, res) => {
