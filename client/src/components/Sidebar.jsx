@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     { path: '/ats', icon: '🧠', label: 'ATS Analyzer' }, // ✅ Added
     { path: '/opportunities', icon: '🎯', label: 'Opportunities & Recommendations' },
     { path: '/career-profile', icon: '👤', label: 'Career Profile' },
-    { path: '/version-control', icon: '🔄', label: 'Version Control' },
+    
   ];
 
   return (

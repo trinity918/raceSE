@@ -10,6 +10,10 @@ import {
   CartesianGrid,
   Cell
 } from 'recharts';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import SideBar from '../components/SideBar';
+import { Upload, FileText, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 
 const ATS = () => {
   const [resumeFile, setResumeFile] = useState(null);
@@ -20,6 +24,7 @@ const ATS = () => {
   const [heatmapData, setHeatmapData] = useState([]);
   const [keywordAnalysis, setKeywordAnalysis] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('input');
 
   const handleSubmit = async () => {
     if (!resumeFile || !jobDescription) {
@@ -28,6 +33,7 @@ const ATS = () => {
     }
 
     setIsLoading(true);
+    setActiveTab('results');
     const formData = new FormData();
     formData.append('resume', resumeFile);
     formData.append('jobDescription', jobDescription);
@@ -63,6 +69,7 @@ const ATS = () => {
         response: error.response?.data
       });
       alert(error.response?.data?.error || 'Failed to analyze resume. Please try again.');
+      setActiveTab('input');
     } finally {
       setIsLoading(false);
     }
@@ -76,23 +83,23 @@ const ATS = () => {
       const isList = section.includes('* ');
       
       if (isHeader) {
-        return <h3 key={i} style={{ margin: '1.5rem 0 0.5rem 0', color: '#333' }}>
+        return <h3 key={i} className="text-xl font-semibold mt-6 mb-2 text-blue-800">
           {section.replace(/\*\*/g, '')}
         </h3>;
       }
       
       if (isList) {
         return (
-          <ul key={i} style={{ marginBottom: '1rem', paddingLeft: '1.5rem' }}>
+          <ul key={i} className="mb-4 pl-6 list-disc">
             {section.split('* ').filter(item => item.trim()).map((item, j) => (
-              <li key={j} style={{ marginBottom: '0.5rem' }}>{item.trim()}</li>
+              <li key={j} className="mb-2">{item.trim()}</li>
             ))}
           </ul>
         );
       }
       
       return (
-        <p key={i} style={{ marginBottom: '1rem', lineHeight: '1.6' }}>
+        <p key={i} className="mb-4 leading-relaxed">
           {section}
         </p>
       );
@@ -110,242 +117,206 @@ const ATS = () => {
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case 'present': return '✅';
-      case 'missing': return '❌';
-      case 'partial': return '⚠️';
-      default: return '';
+      case 'present': return <CheckCircle className="inline mr-1" size={16} color="#4CAF50" />;
+      case 'missing': return <XCircle className="inline mr-1" size={16} color="#F44336" />;
+      case 'partial': return <AlertTriangle className="inline mr-1" size={16} color="#FFC107" />;
+      default: return null;
     }
   };
 
-  return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1 style={{ marginBottom: '1.5rem', color: '#2c3e50' }}>ATS Resume Analyzer</h1>
+  const renderInputForm = () => (
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-6 text-blue-900 border-b pb-3">Resume Analysis Tool</h2>
       
-      <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-        <div style={{ flex: 1, minWidth: '300px' }}>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ marginBottom: '0.5rem' }}>Upload Resume (PDF)</h3>
-            <input 
-              type="file" 
-              accept=".pdf" 
-              onChange={(e) => setResumeFile(e.target.files[0])}
-              style={{ width: '100%', padding: '0.5rem' }}
-              disabled={isLoading}
-            />
-          </div>
-          
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ marginBottom: '0.5rem' }}>Job Description</h3>
-            <textarea
-              rows="10"
-              style={{ 
-                width: '100%', 
-                padding: '0.75rem',
-                borderRadius: '4px',
-                border: '1px solid #ddd',
-                minHeight: '150px'
-              }}
-              placeholder="Paste the job description here..."
-              value={jobDescription}
-              onChange={(e) => setJobDescription(e.target.value)}
-              disabled={isLoading}
-            />
-          </div>
-          
-          <div style={{ marginBottom: '1.5rem' }}>
-            <label htmlFor="analysisType" style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Analysis Type:
-            </label>
-            <select
-              id="analysisType"
-              value={analysisType}
-              onChange={(e) => setAnalysisType(e.target.value)}
-              style={{ 
-                padding: '0.75rem',
-                width: '100%',
-                borderRadius: '4px',
-                border: '1px solid #ddd'
-              }}
-              disabled={isLoading}
-            >
-              <option value="review">Comprehensive Review</option>
-              <option value="skills">Skills Gap Analysis</option>
-              <option value="match">ATS Match Score</option>
-              <option value="tips">Interview Preparation</option>
-            </select>
-          </div>
-          
-          <button
-            onClick={handleSubmit}
+      <div className="mb-6">
+        <label className="block text-lg font-medium mb-2 text-gray-700">
+          Upload Resume (PDF)
+        </label>
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+          <Upload className="mx-auto text-blue-500 mb-2" size={32} />
+          <p className="mb-2 text-sm text-gray-600">Drag & drop your PDF resume or</p>
+          <input
+            type="file"
+            id="resumeUpload"
+            accept=".pdf"
+            onChange={(e) => setResumeFile(e.target.files[0])}
+            className="hidden"
             disabled={isLoading}
-            style={{
-              padding: '0.75rem 1.5rem',
-              background: '#2196F3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: isLoading ? 'wait' : 'pointer',
-              opacity: isLoading ? 0.7 : 1,
-              fontSize: '1rem',
-              width: '100%'
-            }}
+          />
+          <label 
+            htmlFor="resumeUpload" 
+            className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 transition-colors inline-block"
           >
-            {isLoading ? 'Analyzing...' : 'Analyze Resume'}
-          </button>
-        </div>
-
-        {score !== null && (
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            <div style={{
-              background: '#f5f5f5',
-              padding: '1.5rem',
-              borderRadius: '8px',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-              height: '100%'
-            }}>
-              <h2 style={{ marginTop: 0 }}>ATS Compatibility Score</h2>
-              <div style={{
-                width: '150px',
-                height: '150px',
-                borderRadius: '50%',
-                background: `conic-gradient(#4CAF50 0% ${score}%, #f5f5f5 ${score}% 100%)`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto',
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                marginBottom: '1rem'
-              }}>
-                {score}%
-              </div>
-              <p style={{ 
-                textAlign: 'center', 
-                marginTop: '1rem',
-                fontSize: '1.1rem',
-                fontWeight: '500',
-                color: score >= 75 ? '#4CAF50' : 
-                      score >= 50 ? '#FFC107' : '#F44336'
-              }}>
-                {score >= 75 ? 'Excellent match!' : 
-                 score >= 50 ? 'Good match' : 'Needs improvement'}
-              </p>
+            Browse Files
+          </label>
+          {resumeFile && (
+            <div className="mt-3 flex items-center justify-center">
+              <FileText size={16} className="text-blue-500 mr-2" />
+              <span className="text-sm text-gray-700">{resumeFile.name}</span>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+      
+      <div className="mb-6">
+        <label className="block text-lg font-medium mb-2 text-gray-700">
+          Job Description
+        </label>
+        <textarea
+          rows="10"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+          placeholder="Paste the job description here..."
+          value={jobDescription}
+          onChange={(e) => setJobDescription(e.target.value)}
+          disabled={isLoading}
+        />
+      </div>
+      
+      <div className="mb-6">
+        <label htmlFor="analysisType" className="block text-lg font-medium mb-2 text-gray-700">
+          Analysis Type
+        </label>
+        <select
+          id="analysisType"
+          value={analysisType}
+          onChange={(e) => setAnalysisType(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white"
+          disabled={isLoading}
+        >
+          <option value="review">Comprehensive Review</option>
+          <option value="skills">Skills Gap Analysis</option>
+          <option value="match">ATS Match Score</option>
+          <option value="tips">Interview Preparation</option>
+        </select>
+      </div>
+      
+      <button
+        onClick={handleSubmit}
+        disabled={isLoading}
+        className={`w-full py-3 px-6 text-lg font-medium rounded-lg transition-all ${
+          isLoading 
+            ? 'bg-gray-400 cursor-not-allowed' 
+            : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl'
+        }`}
+      >
+        {isLoading ? 'Analyzing...' : 'Analyze Resume'}
+      </button>
+    </div>
+  );
 
+  const renderResults = () => (
+    <div className="space-y-8">
+      {/* Score Card */}
+      {score !== null && (
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-4 text-blue-900 border-b pb-3">ATS Compatibility Score</h2>
+          <div className="flex flex-col items-center">
+            <div className="relative w-48 h-48 mb-4">
+              {/* Score Circle */}
+              <div className="w-full h-full rounded-full bg-gray-100"></div>
+              <div 
+                className="absolute top-0 left-0 w-full h-full rounded-full"
+                style={{
+                  background: `conic-gradient(${
+                    score >= 75 ? '#4CAF50' : score >= 50 ? '#FFC107' : '#F44336'
+                  } 0% ${score}%, transparent ${score}% 100%)`
+                }}
+              ></div>
+              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                <div className="bg-white rounded-full w-36 h-36 flex items-center justify-center">
+                  <span className="text-4xl font-bold">{score}%</span>
+                </div>
+              </div>
+            </div>
+            <p className={`text-xl font-semibold ${
+              score >= 75 ? 'text-green-600' : 
+              score >= 50 ? 'text-yellow-600' : 'text-red-600'
+            }`}>
+              {score >= 75 ? 'Excellent match!' : 
+               score >= 50 ? 'Good match' : 'Needs improvement'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* AI Analysis */}
       {response && (
-        <div style={{ 
-          background: '#f5f5f5', 
-          padding: '1.5rem', 
-          borderRadius: '8px',
-          marginBottom: '2rem'
-        }}>
-          <h2 style={{ marginTop: 0 }}>AI Analysis</h2>
-          <div style={{ 
-            whiteSpace: 'pre-wrap',
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-            lineHeight: '1.6'
-          }}>
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-4 text-blue-900 border-b pb-3">AI Analysis</h2>
+          <div className="prose max-w-none">
             {formatAnalysis(response)}
           </div>
         </div>
       )}
 
+      {/* Heatmap */}
       {heatmapData.length > 0 && (
-        <div style={{ 
-          background: '#f5f5f5', 
-          padding: '1.5rem', 
-          borderRadius: '8px',
-          marginBottom: '2rem'
-        }}>
-          <h2 style={{ marginTop: 0 }}>Resume Section Heatmap</h2>
-          <p style={{ marginBottom: '1rem' }}>
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-4 text-blue-900 border-b pb-3">Resume Section Heatmap</h2>
+          <p className="mb-4 text-gray-700">
             Keyword matches between your resume and job description by section:
           </p>
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={heatmapData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="section" />
-              <YAxis label={{ 
-                value: 'Keyword Matches', 
-                angle: -90, 
-                position: 'insideLeft',
-                style: { fill: '#666' }
-              }} />
-              <Tooltip />
-              <Bar dataKey="value" name="Keyword Matches">
-                {heatmapData.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={getColor(entry.status)} 
-                  />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="h-96">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={heatmapData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="section" />
+                <YAxis label={{ 
+                  value: 'Keyword Matches', 
+                  angle: -90, 
+                  position: 'insideLeft',
+                  style: { fill: '#666' }
+                }} />
+                <Tooltip 
+                  contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+                />
+                <Bar dataKey="value" name="Keyword Matches">
+                  {heatmapData.map((entry, index) => (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={getColor(entry.status)} 
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       )}
 
+      {/* Keyword Analysis */}
       {keywordAnalysis.length > 0 && (
-        <div style={{ 
-          background: '#f5f5f5', 
-          padding: '1.5rem', 
-          borderRadius: '8px'
-        }}>
-          <h2 style={{ marginTop: 0 }}>Keyword Analysis</h2>
-          <p style={{ marginBottom: '1rem' }}>
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-4 text-blue-900 border-b pb-3">Keyword Analysis</h2>
+          <p className="mb-4 text-gray-700">
             Key terms from the job description and their presence in your resume:
           </p>
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ 
-              width: '100%', 
-              borderCollapse: 'collapse',
-              minWidth: '600px'
-            }}>
-              <thead>
-                <tr style={{ background: '#e0e0e0' }}>
-                  <th style={{ 
-                    padding: '0.75rem', 
-                    textAlign: 'left',
-                    borderBottom: '2px solid #bbb'
-                  }}>Keyword</th>
-                  <th style={{ 
-                    padding: '0.75rem', 
-                    textAlign: 'left',
-                    borderBottom: '2px solid #bbb'
-                  }}>Status</th>
-                  <th style={{ 
-                    padding: '0.75rem', 
-                    textAlign: 'left',
-                    borderBottom: '2px solid #bbb'
-                  }}>Found In</th>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Keyword</th>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Status</th>
+                  <th className="py-3 px-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Found In</th>
                 </tr>
               </thead>
               <tbody>
                 {keywordAnalysis.map((item, index) => (
                   <tr 
                     key={index} 
-                    style={{ 
-                      borderBottom: '1px solid #ddd',
-                      background: index % 2 === 0 ? '#fafafa' : 'white'
-                    }}
+                    className={`border-b ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
                   >
-                    <td style={{ 
-                      padding: '0.75rem',
-                      fontWeight: '500'
-                    }}>{item.keyword}</td>
-                    <td style={{ padding: '0.75rem' }}>
-                      <span style={{
-                        color: item.status === 'missing' ? '#F44336' :
-                               item.status === 'partial' ? '#FFC107' : '#4CAF50',
-                        fontWeight: '500'
-                      }}>
-                        {getStatusIcon(item.status)} {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                    <td className="py-3 px-4 font-medium">{item.keyword}</td>
+                    <td className="py-3 px-4">
+                      <span className={`flex items-center font-medium ${
+                        item.status === 'missing' ? 'text-red-600' :
+                        item.status === 'partial' ? 'text-yellow-600' : 'text-green-600'
+                      }`}>
+                        {getStatusIcon(item.status)}
+                        {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                       </span>
                     </td>
-                    <td style={{ padding: '0.75rem' }}>
+                    <td className="py-3 px-4">
                       {item.section || 'Not found'}
                     </td>
                   </tr>
@@ -355,6 +326,65 @@ const ATS = () => {
           </div>
         </div>
       )}
+      
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={() => setActiveTab('input')}
+          className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition-all shadow"
+        >
+          Start New Analysis
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
+      
+      <div className="flex flex-1">
+        <SideBar />
+        
+        <main className="flex-1 p-4 pt-20 lg:p-6 lg:pt-20 lg:ml-64 overflow-auto">
+        <div className="max-w-6xl mx-auto ml-16">
+            <div className="mb-6">
+              <h1 className="text-2xl md:text-3xl font-bold text-blue-900">ATS Resume Analyzer</h1>
+              <p className="text-gray-600 mt-2">Upload your resume and job description to get AI-powered insights</p>
+            </div>
+            
+            <div className="mb-6">
+              <div className="flex border-b border-gray-200">
+                <button
+                  className={`py-2 px-4 md:py-3 md:px-6 font-medium transition-colors ${
+                    activeTab === 'input' 
+                      ? 'text-blue-600 border-b-2 border-blue-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab('input')}
+                  disabled={isLoading}
+                >
+                  Input
+                </button>
+                <button
+                  className={`py-2 px-4 md:py-3 md:px-6 font-medium transition-colors ${
+                    activeTab === 'results' 
+                      ? 'text-blue-600 border-b-2 border-blue-600' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setActiveTab('results')}
+                  disabled={isLoading || (!response && !score)}
+                >
+                  Results
+                </button>
+              </div>
+            </div>
+            
+            {activeTab === 'input' ? renderInputForm() : renderResults()}
+          </div>
+        </main>
+      </div>
+      
+      <Footer />
     </div>
   );
 };

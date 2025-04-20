@@ -6,6 +6,7 @@ import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ATS from './ATS';
 
 const ResumeBuilder = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -37,18 +38,10 @@ const ResumeBuilder = () => {
       formData.append('file', acceptedFiles[0]);
       
       try {
-<<<<<<< HEAD
         // Send to backend - replace with your actual API endpoint
         const response = await fetch('http://127.0.0.1:5000/upload', {
           method: 'POST',
           body: formData,
-=======
-        const response = await axios.post(`${ngrokUrl}/generate-resume`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          responseType: 'blob'
->>>>>>> e7500e1c7632312d422c8a2b5714fe6a4bc225c7
         });
         
         // Create a URL for the PDF blob
@@ -88,7 +81,7 @@ const ResumeBuilder = () => {
   };
 
   const handleATSCheck = () => {
-    navigate('/atsscore');
+    navigate('/ats');
   };
 
   return (
