@@ -1,6 +1,8 @@
 // src/pages/ResumeBuilder.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,12 +11,13 @@ const ResumeBuilder = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [latexCode, setLatexCode] = useState('');
-  const [pdfUrl, setPdfUrl] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [showEditor, setShowEditor] = useState(false);
-  const [editedCode, setEditedCode] = useState('');
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [pdfUrl, setPdfUrl] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+  
+  const ngrokUrl = 'https://ebc5-103-104-226-58.ngrok-free.app';
 
   useEffect(() => {
     if (darkMode) {
@@ -24,38 +27,33 @@ const ResumeBuilder = () => {
     }
   }, [darkMode]);
 
-  // Handle file upload
   const onDrop = async (acceptedFiles) => {
     if (acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      setUploadedFile(file);
-      setError('');
-      setIsProcessing(true);
-
-      // Create form data
+      setError(null);
+      setUploadedFile(acceptedFiles[0]);
+      setLoading(true);
+      
       const formData = new FormData();
-      formData.append('file', file);
-
+      formData.append('file', acceptedFiles[0]);
+      
       try {
-        // Send to backend - replace with your actual API endpoint
-        const response = await fetch('/api/convert-resume', {
-          method: 'POST',
-          body: formData,
+        const response = await axios.post(`${ngrokUrl}/generate-resume`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          responseType: 'blob'
         });
-
-        if (!response.ok) {
-          throw new Error('Conversion failed');
-        }
-
-        const data = await response.json();
-        setLatexCode(data.latex);
-        setPdfUrl(data.pdfUrl);
-        setEditedCode(data.latex);
+        
+        // Create a URL for the PDF blob
+        const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        const url = URL.createObjectURL(pdfBlob);
+        setPdfUrl(url);
+        setSuccess(true);
       } catch (err) {
-        setError('Failed to process file. Please try again.');
-        console.error(err);
+        console.error('Error:', err);
+        setError(err.response?.data?.message || 'Failed to process resume. Please try again.');
       } finally {
-        setIsProcessing(false);
+        setLoading(false);
       }
     }
   };
@@ -66,52 +64,24 @@ const ResumeBuilder = () => {
       'application/pdf': ['.pdf'],
       'application/msword': ['.doc'],
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
-      'text/plain': ['.txt'],
-      'image/*': ['.png', '.jpg', '.jpeg']
+      'text/plain': ['.txt']
     },
-    maxFiles: 1,
-    multiple: false
+    maxFiles: 1
   });
 
-  // Handle code editing and re-submission
-  const handleSubmitEditedCode = async () => {
-    setIsProcessing(true);
-    setError('');
-
-    try {
-      const response = await fetch('/api/latex-to-pdf', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ latex: editedCode }),
-      });
-
-      if (!response.ok) {
-        throw new Error('PDF generation failed');
-      }
-
-      const data = await response.json();
-      setPdfUrl(data.pdfUrl);
-      setLatexCode(editedCode);
-      setShowEditor(false);
-    } catch (err) {
-      setError('Failed to generate PDF. Please check your LaTeX code.');
-      console.error(err);
-    } finally {
-      setIsProcessing(false);
+  const handleDownload = () => {
+    if (pdfUrl) {
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = 'enhanced-resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   };
 
-  // Copy code to clipboard
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(latexCode);
-    // Show toast or notification here
-  };
-
-  // Download PDF
-  const handleDownloadPDF = () => {
-    window.open(pdfUrl, '_blank');
+  const handleATSCheck = () => {
+    navigate('/atsscore');
   };
 
   return (
@@ -124,136 +94,167 @@ const ResumeBuilder = () => {
       />
       
       <main className="lg:ml-64 pt-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto py-6">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 animate-fade-in">
-              Resume Builder
+        <div className="max-w-4xl mx-auto py-12">
+          {/* Header Section */}
+          <div className="text-center mb-12 animate-fadeIn">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+              AI-Powered Resume Builder
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 animate-fade-in-delay">
-              Convert your resume to LaTeX format instantly
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              Transform your resume into a professional LaTeX format instantly
             </p>
           </div>
 
           {/* Upload Section */}
-          <div className="mb-12">
-            <div
-              {...getRootProps()}
-              className={`border-3 border-dashed rounded-xl p-12 text-center transition-all duration-300 
-                ${isDragActive 
-                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 transform scale-[1.02]' 
-                  : 'border-gray-300 dark:border-gray-600 hover:border-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                }
-                ${isProcessing ? 'opacity-50 pointer-events-none' : ''}
-                cursor-pointer backdrop-blur-sm`}
-            >
-              <input {...getInputProps()} />
-              <div className="flex flex-col items-center space-y-4">
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ${isDragActive ? 'animate-bounce' : 'animate-pulse'}`}>
-                  <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                  </svg>
-                </div>
-                <p className="text-xl font-medium text-gray-900 dark:text-white">
-                  {isDragActive ? 'Drop your resume here' : 'Drag & drop your resume file'}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  or click to select a file (PDF, DOC, DOCX, TXT, or Image)
-                </p>
-                {uploadedFile && (
-                  <div className="mt-4 flex items-center space-x-2 bg-green-100 dark:bg-green-900/20 px-4 py-2 rounded-full">
-                    <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="relative">
+            {/* Gradient Background Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl transform rotate-1"></div>
+            
+            <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+              <div
+                {...getRootProps()}
+                className={`p-12 text-center cursor-pointer transition-all duration-300 
+                  ${isDragActive 
+                    ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-500' 
+                    : 'bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600'
+                  }
+                  ${loading ? 'opacity-75 cursor-wait' : ''}
+                  border-2 border-dashed rounded-xl m-4`}
+              >
+                <input {...getInputProps()} />
+                
+                {loading ? (
+                  <div className="flex flex-col items-center space-y-4 animate-pulse">
+                    <svg className="animate-spin h-12 w-12 text-blue-500" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                    </svg>
+                    <p className="text-lg font-medium text-gray-700 dark:text-gray-300">Processing your resume...</p>
+                  </div>
+                ) : isDragActive ? (
+                  <div className="flex flex-col items-center space-y-4">
+                    <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-full">
+                      <svg className="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </div>
+                    <p className="text-lg font-medium text-blue-600 dark:text-blue-400">Drop your resume here</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center space-y-4">
+                    <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-full">
+                      <svg className="h-12 w-12 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Drag and drop your resume here
+                      </p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        or click to browse files (PDF, DOC, DOCX, TXT)
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                {uploadedFile && !loading && !error && !success && (
+                  <div className="mt-6 inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full">
+                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-green-600">{uploadedFile.name}</span>
+                    {uploadedFile.name}
                   </div>
                 )}
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="m-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center text-red-700 dark:text-red-300">
+                  <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {error}
+                </div>
+              )}
+
+              {/* Success Section */}
+              {success && pdfUrl && (
+                <div className="m-4">
+                  <div className="p-6 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-full">
+                            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-white">Resume Enhanced Successfully!</h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">Your LaTeX resume is ready to download</p>
+                        </div>
+                      </div>
+                      <div className="flex space-x-3">
+                        <button
+                          onClick={handleDownload}
+                          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                          <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          </svg>
+                          Download PDF
+                        </button>
+                        <button
+                          onClick={handleATSCheck}
+                          className="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                        >
+                          <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                          Check ATS Score
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          {error && (
-            <div className="mb-6 p-4 bg-red-100 dark:bg-red-900/20 border border-red-200 dark:border-red-900 rounded-lg text-red-600 dark:text-red-400">
-              {error}
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          {latexCode && (
-            <div className="flex justify-center space-x-4 mb-8 animate-slide-up">
-              <button
-                onClick={handleDownloadPDF}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          {/* Features Section */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full inline-block mb-4">
+                <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span>Download PDF</span>
-              </button>
-              <button
-                onClick={handleCopyCode}
-                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <span>Copy Code</span>
-              </button>
-              <button
-                onClick={() => setShowEditor(!showEditor)}
-                className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <span>Edit Code</span>
-              </button>
-            </div>
-          )}
-
-          {/* Code Editor */}
-          {showEditor && (
-            <div className="mb-8 animate-fade-in">
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-                <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Edit LaTeX Code</h3>
-                  <button
-                    onClick={handleSubmitEditedCode}
-                    disabled={isProcessing}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-                  >
-                    {isProcessing ? 'Processing...' : 'Generate PDF'}
-                  </button>
-                </div>
-                <textarea
-                  value={editedCode}
-                  onChange={(e) => setEditedCode(e.target.value)}
-                  className="w-full h-96 p-4 font-mono text-sm bg-gray-50 dark:bg-gray-900 border-0 focus:ring-0"
-                  placeholder="Edit your LaTeX code here..."
-                />
               </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">LaTeX Conversion</h3>
+              <p className="text-gray-600 dark:text-gray-400">AI-powered conversion to professional LaTeX format</p>
             </div>
-          )}
-
-          {/* Overleaf Link */}
-          {latexCode && (
-            <div className="text-center animate-fade-in">
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Or edit your resume professionally on Overleaf:
-              </p><a
-              
-                href="https://www.overleaf.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              >
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            
+            <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-full inline-block mb-4">
+                <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                 </svg>
-                Open in Overleaf
-              </a>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">ATS Optimization</h3>
+              <p className="text-gray-600 dark:text-gray-400">Ensure your resume passes ATS systems with high scores</p>
             </div>
-          )}
+            
+            <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-full inline-block mb-4">
+                <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Easy Download</h3>
+              <p className="text-gray-600 dark:text-gray-400">Download your enhanced resume as PDF instantly</p>
+            </div>
+          </div>
         </div>
       </main>
       
