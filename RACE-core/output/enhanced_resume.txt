@@ -12,17 +12,27 @@
             "dates": "Graduating in May 2027"
         }
     ],
-    "experience": [],
+    "experience": [
+        {
+            "title": "Former sub-committee member",
+            "company": "Rotaract Club of SPIT",
+            "location": "",
+            "dates": "September, 2023 - August, 2024",
+            "details": [
+                "Mentored school children at Abhyudaya SPJIMR, focusing on personal development and academic improvement."
+            ]
+        }
+    ],
     "projects": [
         {
             "name": "Flood Risk Prediction Model (Machine Learning Mini-Project)",
             "stack": "Python, Machine Learning",
             "dates": "November, 2024",
             "details": [
-                "Designed and implemented an ML model leveraging machine learning techniques and real-time weather data to accurately predict flood risks.",
-                "Processed and cleaned historical flood data, meteorological data, and elevation data to significantly enhance the accuracy of the model.",
-                "Utilized various ML models such as random forest, regression, and neural networks, achieving an impressive accuracy of up to 95 percent.",
-                "Deployed the model on Google Colab for thorough testing and analysis, ensuring easy accessibility and usability."
+                "Led the design of an ML model using real-time weather data to predict flood risks, achieving a model accuracy of up to 95%.",
+                "Cleaned and processed historical flood, meteorological, and elevation data to enhance model accuracy.",
+                "Implemented various ML models like random forest, regression, neural networks to achieve high accuracy.",
+                "Deployed the model on Google Colab for testing, ensuring easy accessibility and analysis."
             ]
         },
         {
@@ -30,9 +40,9 @@
             "stack": "Python, SQL, Javascript",
             "dates": "December, 2024",
             "details": [
-                "Designed and optimized a robust SQL database structure for efficient content storage, user authentication, and streaming history.",
-                "Implemented a secure login system with hashed password storage to mitigate security risks like SQL injection.",
-                "Enhanced database query performance and server response times for seamless data retrieval and streaming experience.",
+                "Designed and optimized a SQL database for efficient content storage, user authentication, and streaming history.",
+                "Implemented a secure login system with hashed password storage to prevent security threats like SQL injection.",
+                "Optimized database queries and server responses for efficient data retrieval and seamless streaming experience.",
                 "Developed an interactive front-end using JavaScript and a secure back-end with Python and SQL."
             ]
         },
@@ -41,11 +51,12 @@
             "stack": "Javascript",
             "dates": "March, 2025",
             "details": [
-                "Recognized with the Best Solution award for the problem statement at BBB-Frontend Hackathon hosted at SPIT.",
-                "Crafted a responsive front-end interface with React.js and Tailwind CSS to ensure a seamless user experience on various devices.",
-                "Designed engaging UI components to showcase key features such as financial learning modules, calculators, community posts, and literacy courses.",
-                "Focused on user-centric design principles to empower women with easy access to financial resources, tools, and mentorship programs.",
-                "Optimized the platform for accessibility and performance, resulting in fast loading times and usability for all audiences."
+                "Awarded best solution for problem statement in BBB-Frontend Hackathon at SPIT.",
+                "Developed a responsive front-end with React.js and Tailwind CSS for seamless user experience across devices.",
+                "Designed interactive UI components for financial learning modules, calculators, community posts, and literacy courses.",
+                "Focused on user-centric design to empower women with easy access to financial resources and mentorship programs.",
+                "Optimized website for accessibility and performance, ensuring quick loading and usability for all users.",
+                "Handled social media pages, marketing deals, and volunteered for social work initiatives."
             ]
         }
     ],
